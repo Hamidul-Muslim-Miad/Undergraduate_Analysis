@@ -1,0 +1,215 @@
+\documentclass{book}
+\PassOptionsToPackage{prologue,dvipsnames}{xcolor}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{pgfplots}
+\usepackage{ulem}
+\pgfplotsset{compat=1.18}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{skull}
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{sectsty}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{physics}
+\usepackage{chngcntr}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage[toc,page]{appendix}
+\usepackage{pifont}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathmorphing, arrows.meta, positioning}
+\usepackage{bm}
+\usepackage[a4paper, total={7in, 9in}]{geometry}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage[strict]{changepage}
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{cleveref}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\chapterfont{\color{teal}}
+\sectionfont{\color{violet}}
+\subsectionfont{\color{olive}}
+\subsubsectionfont{\color{PineGreen}}
+\numberwithin{equation}{subsection}
+\renewcommand*\contentsname{Table of Contents}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+\makeatletter
+\newcommand{\blfootnote}[1]{%
+  \begingroup
+  \renewcommand{\thefootnote}{}% Remove footnote number
+  \footnote{#1}% Add footnote text
+  \addtocounter{footnote}{-1}% Decrement counter to maintain numbering
+  \endgroup
+}
+\makeatother
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcounter{definition}[section]
+\renewcommand{\thedefinition}{\thesection.\arabic{definition}}
+
+
+\newenvironment{Definition}[1]{
+    \refstepcounter{definition}
+    \begin{tcolorbox}[
+        colback=red!5!white,
+        colframe=red!75!black,
+        title={Definition \thedefinition: #1}
+    ]
+}{%
+    \end{tcolorbox}
+}
+\newcounter{query}[section]
+\renewcommand{\thequery}{\thesection.\arabic{query}}
+\newenvironment{Query}[1]{
+    \refstepcounter{query}
+    \begin{tcolorbox}[
+        colback=ForestGreen!5!white,
+        colframe=ForestGreen!55!black,
+        title={Query \thequery: #1}
+    ]
+}{%
+    \end{tcolorbox}
+}
+\newcounter{lemma}[section]
+\renewcommand{\thelemma}{\thesection.\arabic{lemma}}
+\newenvironment{Lemma}[1]{%
+    \refstepcounter{lemma}%
+    \begin{tcolorbox}[
+        width=\linewidth-3cm, % Match lemma_proof's 1.5cm indentation on both sides
+        center, % Center the narrower box
+        colback=Gray!5!white,
+        colframe=Gray!50!black,
+        title={Lemma \thelemma: #1}
+    ]
+}{%
+    \end{tcolorbox}%
+}
+\newcounter{theorem}[section]
+\renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
+
+
+\newenvironment{Theorem}[1]{
+    \refstepcounter{theorem}
+    \begin{tcolorbox}[
+        colback=RoyalPurple!5!white,
+        colframe=RoyalPurple!100!black,
+        title={Theorem \thetheorem: #1}
+    ]
+}{%
+    \end{tcolorbox}
+}
+\newcounter{example}[section]
+\renewcommand{\theexample}{\thesection.\arabic{example}}
+
+
+\newenvironment{Example}{
+    \refstepcounter{example}
+    \begin{tcolorbox}[
+        colback=YellowOrange!10!white,
+        colframe=YellowOrange!80!black,
+        title={Illustrative Example \theexample}
+    ]
+}{%
+    \end{tcolorbox}
+}
+\newcounter{trick}
+\renewcommand{\thetrick}{\arabic{trick}}
+
+\newenvironment{Trick}[1]{
+    \refstepcounter{trick}
+    \begin{tcolorbox}[
+        colback=Cyan!5!white,
+        colframe=Cyan!75!black,
+        title={Trick \thetrick: #1}
+    ]
+}{
+    \end{tcolorbox}
+}
+\renewenvironment{proof}[1][Proof]{
+  \par\noindent\textbf{\textit{#1. }}
+}{
+  \hfill$\blacksquare$\par\vspace{6pt}
+}
+\newenvironment{Investigation}{%
+    \par\noindent\textbf{\textit{Investigation.}}~ % Bold & Italic title with dot
+    \ignorespaces
+}{%
+    \hfill$\blacksquare$\par\vspace{6pt} % Black-filled square at the end with spacing
+}
+\makeatletter
+\newenvironment{lemma_proof}{%
+  \begin{adjustwidth}{1.5cm}{1.5cm}% Adjust indentation on both sides
+  \par\pushQED{\qed}% Initialize QED system
+  \normalfont \topsep6\p@\@plus6\p@\relax % Vertical spacing
+  \trivlist % Start environment
+  \item[\hskip\labelsep
+        \bfseries\itshape % Bold italic title
+        Proof of Lemma.\@addpunct{.}] % Title with proper punctuation
+  \ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse % End environment and QED
+  \end{adjustwidth}%
+}
+\makeatother
+
+\newcounter{exercise}[chapter]
+\renewcommand{\theexercise}{\thechapter\Alph{exercise}}
+\counterwithin*{exercise}{chapter} % Reset counter each chapter, but don't show chapter number in counter
+
+\newcommand{\exercise}{%
+    \refstepcounter{exercise}%
+    \section*{Exercise \theexercise}%
+}
+
+\title{Undergraduate Mathematical Analysis}
+\author{Hamidul Muslim Miad}
+\date{13 August, 2024}
+\begin{document}
+\frontmatter
+
+\thispagestyle{empty}
+\maketitle
+\clearpage
+\pagenumbering{roman}
+\tableofcontents
+\mainmatter
+\setcounter{chapter}{-1}
+\part*{Part A: The Fundamentals}
+\addcontentsline{toc}{part}{\protect{}Part A: The Fundamentals}
+\input{the_foundations}
+\part*{Part B: Topology}
+\addcontentsline{toc}{part}{\protect{}Part B: Topology}
+\input{topology}
+\part*{Part C: Complex Analysis}
+\addcontentsline{toc}{part}{\protect{}Part C: Complex Analysis}
+\input{complex_analysis}
+\part*{Part D: Measure Theory \& Integration}
+\addcontentsline{toc}{part}{\protect{}Part D: Measure Theory \& Integration}
+\input{measure_and_integration}
+\part*{Part E: Functional Analysis}
+\addcontentsline{toc}{part}{\protect{}Part E: Functional Analysis}
+\input{functional_analysis}
+\backmatter
+\part*{Part F: Miscellaneous Topics}
+\addcontentsline{toc}{part}{\protect{}Part F: Miscellaneous Topics}
+\input{open_problems}
+\input{interesting_examples}
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{undergraduate_analysis}
+\end{document}
