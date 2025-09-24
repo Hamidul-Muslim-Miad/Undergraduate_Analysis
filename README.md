@@ -1,2 +1,3 @@
 # Undergraduate_Analysis
-These are my extensive notes relating to everything I learned about mathematical analysis in my undergraduate life.
+These are my extensive notes relating to everything I learned about mathematical analysis in my undergraduate life. I have tried my best to organize and motivate the definitions, theorems so that any novice can read through it. I have wrote these notes while learning the topics myself, so there is a strong probability of my work containing mistakes and typos. I highly encourage anyone and everyone to notify me of any mistakes and\or typos at my email: hamidulmuslimmiad1402@gmail.com.
+With that out of the way, to the fellow readers, I wish all of you a happy learning journey in mathematical analysis.
