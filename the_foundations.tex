@@ -307,6 +307,55 @@ Now that we have defined a field, we want to sort out how the members are arrang
 	\end{enumerate}
 	The set $X$ will then be called a strictly preordered set.
 \end{Definition}
+\noindent Below is a diagram summarizing all the important relations we are going to encounter in this text :
+\begin{tikzpicture}[
+	node distance=0.5cm and 0.01cm,
+	box/.style={draw, rectangle, rounded corners, minimum width=2cm, minimum height=0.8cm, align=center},
+	title/.style={font=\large\bfseries}
+	]
+	
+	% Top level - Relation
+	\node[box] (relation) {Relation};
+	
+	% First level branches
+	\node[box, below left=of relation] (preorder) {Preordered Set\\ (Reflexive + Transitive)};
+	\node[box, below right=of relation] (function) {Function\\ (Right-unique + Left-total)};
+	
+	% Connect top to first level
+	\draw[->] (relation) -- (preorder);
+	\draw[->] (relation) -- (function);
+	
+	% Preorder branch
+	\node[box, below left=of preorder] (equivalence) {Equivalence Relation\\ (+ Symmetric)};
+	\node[box, below =of preorder] (partial) {Partial Order\\ (+ Antisymmetric)};
+	
+	% Connect preorder to its children
+	\draw[->] (preorder) -- (equivalence);
+	\draw[->] (preorder) -- (partial);
+	
+	% Partial order to total order
+	\node[box, below=of partial] (total) {Total Order\\ (+ Connectedness)};
+	\draw[->] (partial) -- (total);
+	
+	% Function branch
+	\node[box, below =of function] (injective) {Injective Function\\ (+ Left-unique)};
+	\node[box, below right=of function] (surjective) {Surjective Function\\ (+ Right-total)};
+	
+	% Connect function to its children
+	\draw[->] (function) -- (injective);
+	\draw[->] (function) -- (surjective);
+	
+	% Bijective function at intersection
+	\node[box, below=3cm of function] (bijective) {Bijective Function\\ (Injective + Surjective)};
+	
+	% Connect to bijective
+	\draw[->] (injective) -- (bijective);
+	\draw[->] (surjective) -- (bijective);
+	
+	% Title
+	\node[title, above=0.5cm of relation] {Classification of Mathematical Relations};
+	
+\end{tikzpicture}
 \subsubsection{Ordering and Elements}
 With all this talk about the ordering, it is natural to ask which elements are the smallest and which are the greatest. This gives us the following -
 \begin{Definition}{Greatest Element of a Set}\label{greatest_element_of_a_set}
@@ -356,13 +405,13 @@ With all this talk about the ordering, it is natural to ask which elements are t
         \item[e.] If $y>x>0$, then $\frac{1}{x}>\frac{1}{y}>0$.
     \end{enumerate}
     \item[\textbf{3.}] \textbf{Multiple Ordering on the Same Set:} Consider the particular subset of a real number $A=\{t=r+s\sqrt{2}:r,s\in\mathbb{Q}\}$. Notice that $A\subset\mathbb{R}$. So, the usual notion of ordering in real numbers works for the set $A$. But an interesting thing is that the set $A$ can be ordered in a different way. For that, we will make use of the positive cone definition of an ordered field. Prove that the function $f:r+s\sqrt{2}\to r-s\sqrt{2}$ produces a positive cone\footnotemark. More specifically, prove that for $r-s\sqrt{2}\in P\subseteq A$ and $P$ satisfies all the conditions of a positive cone. This is the second way of ordering for the set $A$.
+    \footnotetext{The reason why $r-s\sqrt{2}$ is selected is due to \textbf{automorphism}. Automorphism is generally covered in an abstract algebra course, so you will learn about it there. In short automorphism is a bijective function $f$ defined on the set $A$ such that $f:A\to A$ and the function $f$ preserves all the algebraic structures of the set $A$.}
     \item[\textbf{4.}] \textbf{Some uniqueness checks:} Prove the following -
     \begin{enumerate}
         \item Greatest and least element of a set are unique.
         \item Maximal and minimal elements of a set are not unique. Prove it by constructing an example.
     \end{enumerate}
 \end{enumerate}
-\footnotetext{The reason why $r-s\sqrt{2}$ is selected is due to \textbf{automorphism}. Automorphism is generally covered in an abstract algebra course, so you will learn about it there. In short automorphism is a bijective function $f$ defined on the set $A$ such that $f:A\to A$ and the function $f$ preserves all the algebraic structures of the set $A$.}
 \subsection{A Glimpse into Completeness}
 In the previous parts, using the concept of fields and orders, we can distinguish $\mathbb{R},\mathbb{Q}$ from $\mathbb{N},\mathbb{Z},\mathbb{I},\mathbb{C}$. Now, what can we do to distinguish between $\mathbb{R},\mathbb{Q}$? $\mathbb{Q}$ obviously does not contain any irrational numbers, which $\mathbb{R}$ has. So, let us start from there. We first show the irrationality of a particular number in $\mathbb{R}$, namely $\sqrt{2}$.
 \begin{Example}\label{irrationality_of_sqrt2}
@@ -1325,45 +1374,10 @@ Now, we will try to prove the following two model examples.
 	\end{Theorem}
 \end{enumerate}
 \subsection{From ZF to the Peano Axioms}
-\section{Supplementary Material: From the Natural Numbers to the Real Numbers}
+\section{Supplementary Material: From the Natural Numbers to the Rational Numbers}
 \subsection{Constructing the Integers}
 \subsection{Constructing the Rationals}
-\subsection{Constructing the Reals}
-\begin{Theorem}{Maximum and Minimum of Subsets of Rational Numbers Bounded by Rational Numbers}
-	Let \(A=\{x\in\mathbb{Q}:x<r,r\in\mathbb{Q}\},\ B=\{x\in\mathbb{Q}:r<x,r\in\mathbb{Q}\},\ A'=A\cup\{r\},\ B'=B\cup\{r\}\). Then prove the following -
-	\begin{enumerate}
-		\item $A$ has no maximum element, but $A'$ has a maximum element.
-		\item $B$ has no minimum element, but $B'$ has a minimum element.
-	\end{enumerate}
-\end{Theorem}
-\begin{Theorem}{Maximum and Minimum of Subsets of Rational Numbers Bounded by Irrational Numbers}
-	Let $A=\{x\in\mathbb{Q}:x<r,r\in\mathbb{I}\}, B=\{x\in\mathbb{Q}:x\leq r,r\in\mathbb{I}\}$. Then prove the following -
-	\begin{enumerate}
-		\item $\max A=\max B$, provided the maximum element exists.
-		\item Prove the analogous property for bounded below sets in rational numbers.
-	\end{enumerate}
-\end{Theorem}
-\begin{Theorem}{A Useful Inequality}
-	For all $n\in\mathbb{N}$, $0<\frac{1}{n}$.
-\end{Theorem}
-\begin{proof}
-	By construction of the natural numbers we know,
-	\begin{align*}
-		& 0<1\\
-		\implies & \frac{0}{n}<\frac{1}{n}\\
-		\implies & 0<\frac{1}{n}
-	\end{align*}
-	Where $n$ is an arbitrary natural number. As the choice is arbitrary, it is true for all natural numbers.\\
-	\textbf{\underline{An interesting observation:}} This theorem essentially states that there exists no positive lower bound for $\frac{1}{n}$.
-\end{proof}
-\begin{Theorem}{Archimedean Property in the Setting of Rational Numbers}
-	For all rational numbers $p<q$, we can always find another rational number $r$ such that $p<r<q$.
-\end{Theorem}
-\begin{proof}
-	We need to prove that we can find a rational number $r$ such that $p<r<q$ for all $p,q\in\mathbb{Q}$. Now if $p<r<q\iff 0<r-p<q-p$. So, proving $0<r-p<q-p$ is true is enough.\\
-	For simplification purposes, define $a:=q-p,b:=r-p$. So, we need to prove that for all positive rational numbers $a$ we can always find a positive rational number $b$ such that $0<b<a$.\\
-	Now, $a$ is a positive rational number by construction, so $0<a$. From the previous theorem, we also know that $0<\frac{1}{n}$ for all $n\in\mathbb{N}$. Now, $0<\frac{1}{n}\implies-\frac{1}{n}<0$ and adding this to $0<a$ gives, $0<a-\frac{1}{n}$. Now, obviously $a<a+\frac{1}{n}\implies a-\frac{1}{n}<a$, so we have managed to prove that $0<a-\frac{1}{n}<a$. Setting $b=a-\frac{1}{n}$ gives us, $0<b<a$. This concludes the proof.
-\end{proof}
+We keep our discussions restricted up to here, in the supplementary material section of the next chapter, we construct the real numbers from the rational numbers by filling up the gaps in the rationals through a process called `completion'.
 \chapter{Series and Sequences}
 \chapter{Limits and Continuity}
 \chapter{Topology: What \& Why?}
@@ -1850,7 +1864,6 @@ Notice that in the four boxed equations, the first two set the domain and the ge
         Is the union of two topologies a topology? If not, then under what condition (if and only if statement) will the union be a topology? If one can find such a condition, can it be generalized to arbitrary unions?\\
         {[Hint: (I) Think of some of the topologies from the set $X=\{a,b,c\}$. (II) You have two bags but can only carry one. But you want to keep both bags, so what would you do in that case? You simply put the smaller bag into the larger one!]}
     \end{Query}
-    \newpage
     \item \textbf{Investigate the following query -}
     \begin{Query}{Topology where Sets are either Clopen, or not open and not closed in $\mathbb{R}$}\label{partition_topology_real}
         Excluding the $\tau_{dis}, \tau_{tri}$, which topology ensures that every open set in $\mathbb{R}$ is closed and vice versa?\newline
