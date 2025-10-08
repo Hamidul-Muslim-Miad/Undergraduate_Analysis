@@ -33,6 +33,7 @@
 \usepackage{enumitem}
 \usepackage[colorlinks=true, linkcolor=Aquamarine!90!black, urlcolor=blue, citecolor=blue]{hyperref}
 \usepackage{cleveref}
+\usepackage{etoolbox}
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 \pagestyle{fancyplain}
@@ -45,6 +46,12 @@
 \subsubsectionfont{\color{PineGreen}}
 \numberwithin{equation}{subsection}
 \renewcommand*\contentsname{Table of Contents}
+\newcommand{\toclinkcolor}{black} % <-- change this to the ToC color you want
+
+\makeatletter
+\pretocmd{\tableofcontents}{\begingroup\hypersetup{linkcolor=\toclinkcolor}}{}{}
+\apptocmd{\tableofcontents}{\endgroup}{}{}
+\makeatother
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
@@ -195,14 +202,17 @@
 \part*{Part B: Topology}
 \addcontentsline{toc}{part}{\protect{}Part B: Topology}
 \input{topology}
-\part*{Part C: Complex Analysis}
-\addcontentsline{toc}{part}{\protect{}Part C: Complex Analysis}
-\input{complex_analysis}
-\part*{Part D: Measure Theory \& Integration}
-\addcontentsline{toc}{part}{\protect{}Part D: Measure Theory \& Integration}
+\part*{Part C: Measure Theory \& Integration}
+\addcontentsline{toc}{part}{\protect{}Part C: Measure Theory \& Integration}
 \input{measure_and_integration}
-\part*{Part E: Functional Analysis}
-\addcontentsline{toc}{part}{\protect{}Part E: Functional Analysis}
+\part*{Part D: Differential Geometry}
+\addcontentsline{toc}{part}{\protect{}Part D: Differential Geometry}
+\input{differential_geometry}
+\part*{Part E: Complex Analysis}
+\addcontentsline{toc}{part}{\protect{}Part E: Complex Analysis}
+\input{complex_analysis}
+\part*{Part F: Functional Analysis}
+\addcontentsline{toc}{part}{\protect{}Part F: Functional Analysis}
 \input{functional_analysis}
 \backmatter
 \part*{Part F: Miscellaneous Topics}

@@ -19,6 +19,11 @@
 \subsubsection{Bijective Functions}
 \subsubsection{Inverse Functions}
 \subsection{Composition of Functions}
+\subsection{Operations}
+\section{Some Basic Algebraic Structures}
+\subsection{Groups}
+\subsection{Homomorphism and Isomorphism}
+\subsection{Rings}
 \chapter{In the Beginning}
 Before we begin studying anything about real numbers, we need a couple of ground rules to start our work. And everything else about the real numbers needs to be proven from these ground rules. Now we will attempt to formalize a fundamental structure that will help us to define what the real numbers are, and what makes the real numbers different than other number systems, such as the natural numbers and rational numbers.\\
 It is important to note that historically, we just assumed the definition and properties of real numbers intuitively, and only about 120 years ago, the mathematics community actually constructed real numbers formally from the very fundamental ideas of natural numbers. These fundamental ideas regarding the natural numbers are called the \textbf{\textit{Peano Axioms}} as they were put forth by the Italian mathematician Giuseppe Peano (1858-1932). There are a couple of ways to construct the reals from the naturals, but these methods are lengthy, and the steps are just some `unwieldy' manipulations and repeated use of the principle of induction. Furthermore, in my personal experience, most first-time learners are unable to appreciate the beauty behind such constructions. But the importance of this matter cannot be ignored at all, and hence, one such construction is given in the appendix section of the text.\\
@@ -351,9 +356,6 @@ Now that we have defined a field, we want to sort out how the members are arrang
 	% Connect to bijective
 	\draw[->] (injective) -- (bijective);
 	\draw[->] (surjective) -- (bijective);
-	
-	% Title
-	\node[title, above=0.5cm of relation] {Classification of Mathematical Relations};
 	
 \end{tikzpicture}
 \subsubsection{Ordering and Elements}
@@ -921,8 +923,29 @@ Before we investigate the properties of the supremum, let us establish some nota
 \subsection{Complex Numbers}
 \subsection{Extended Complex Numbers}
 \section{Metric Spaces}
+We have seen the real numbers, complex numbers, and we can observe that these numbers have a notion of distance defined on them. We wish to create a framework that will encapsulate all things distance, this very attempt motivates us to define the notion of a metric space where the notion of distance is measured by the `metric' function.
 \subsection{Definition and Examples of Metric Spaces}
-\subsection{Properties of Metric Spaces}
+Now, we will need two points to measure distance, so the metric function must have two inputs and give one non-negative real number (distance cannot have negative value!) as output. So, if we denote the metric function by $d$ and $X$ can be any set: $$d:X\cross X\to \mathbb{R}^+\cup\{0\}$$ $$\text{For all }x,y\in X,\ \boxed{d(x,y)\geq 0}$$
+As $d$ spits out the distance between any two points, say $x,y$ of the set $X$, it should not make any difference if we measure the distance from $x$ to $y$, or from $y$ to $x$. This can be written as $\boxed{d(x,y)=d(y,x)}$.\\
+Now, any distance from a point to the same point is $0$, so our distance function must follow that $d(x,x)=0$, or written otherwise, $\boxed{d(x,y)=0\text{ if and only if } x=y}$.\\
+Now, when going from one point, $x$, to another point, $y$, if we take any detour or stoppage on the point $z$, then we get two cases:
+\begin{enumerate}
+	\item The point of detour or stoppage $z$ is not on the direct path of $x$ and $y$. So, the distance traversed by going from $x$ to $y$ is strictly shorter than going from $x$ to $z$ and then going from $z$ to $y$. So, in terms of the metric function $d(x,y)<d(x,z)+d(z,y)$.
+	\item Now we consider the same case as before, but $z$ is a point on the direct path of $x$ and $y$. Then, $d(x,y)=d(x,z)+d(z,y)$.
+\end{enumerate}
+Combining both cases, we get the classic triangle inequality, but in terms of the metric function as $\boxed{d(x,y)\leq d(x,z)+d(z,y)}$ for all $x,y,z\in X$.\\
+Incorporating all the boxed equation gives us the following definition of the metric space :
+\begin{Definition}{Metric Space}\label{metric_space}
+	A space $(X,d)$ is defined as a metric space if there exists a set $X$ and a function $d:X\cross X\to \mathbb{R}$ such that it possess the following properties for all $x,y,z\in X$,:
+	\begin{enumerate}
+		\item Non-negativity: $d(x,y)\geq0$.
+		\item Symmetry: $d(x,y)=d(y,x)$.
+		\item Indiscernibility: $d(x,y)=0$ if and only if $x=y$.
+		\item Triangle Inequality: $d(x,y)\leq d(x,z)+d(z,y)$.
+	\end{enumerate}
+	The function $d$ is called the metric function. When there is no scope of confusion, we omit the mention of $d$.
+\end{Definition}
+\subsection{More about Metric Spaces}
 \section{Cardinality of Sets}
 In our mathematics journey, we use sets quite extensively, we work with sets of different sizes, some sets have no members like the empty set, some have 3 members like $\{1,2,3\}$, some have infinite members like $\mathbb{N}=\{1,2,3,\dots\}$. This notion of the number of members of the set is called the cardinality of the set.
 \subsection{The Basics}
@@ -1021,7 +1044,7 @@ This wonderful method of generalizing cardinality to infinite sets was put forth
 \end{Definition}
 \noindent \underline{\textbf{Some Other Equivalent Definitions of Countable Sets:}} The following are some of the alternate definitions of countable sets..
 \begin{Definition}{Alternate Definitions of Countable Sets}\label{alternate_countable_set}
-    \begin{enumerate}
+    \begin{enumerate}[leftmargin=0.5cm]
         \item An arbitrary set $A$ is countable if there exists a bijective function or map from the set to a subset of the naturals. Symbolically $f:A\xrightarrow{\rm bij}B\subseteq\mathbb{N}$.
         \item An arbitrary set $A$ is countable if there exists an injective function or map from the set to the naturals, i.e., $f:A\xrightarrow{\rm inj}\mathbb{N}$.
         \item An arbitrary set $A$ is countable if there exists a surjective function or map from the naturals to the set, i.e., $f:\mathbb{N}\xrightarrow{\rm sur}A$.
@@ -1383,7 +1406,7 @@ We keep our discussions restricted up to here, in the supplementary material sec
 \chapter{Topology: What \& Why?}
 Continuity is of special importance in mathematical analysis, as it allows us to study `nice' functions and their behavior. However, rather than studying individual continuous functions, it is better to study a space of continuous functions. Furthermore, it is natural to attempt to generalize the tools we are studying further in the space of continuous functions. The most general structure that we have worked with up to now is metric spaces, which gives us a notion of distance in our space. So, it is quite natural to try to look beyond such constructions, and as all our analysis has been developed on set theory, we look to establish continuity with as little input as possible from anything more than that. The need to go beyond the notion of distance and study the space of continuous functions with nothing but just the basics of set theory actually gave rise to the popularity of `topology'.
 \section{Open Sets, Closed Sets and Topology}
-Open sets are the main instrument of topology, but before we tackle topology itself, we need to understand open sets first. Due to the very abstract nature of open sets, I feel that open sets should be motivated in the simplest setting available to us, the real line. That is why, in this instance, I am breaking from my usual norm of using metric spaces to introduce concepts, and am sticking to the ever-reliable real line. But to ensure complete understanding, I have left the formulation of open sets in terms of metric spaces as an exercise.
+Open sets are the main instrument of topology, but before we tackle topology itself, we need to understand open sets first. Due to the very abstract nature of open sets, one feels that open sets should be motivated in the simplest setting available to us, the real line. That is why, in this instance, we are breaking from the usual norm of using metric spaces to introduce concepts, and are sticking to the ever-reliable real line. But to ensure complete understanding, the formulation of open sets in terms of metric spaces has been left as an exercise.
 \subsection{Motivation behind Open Sets in \texorpdfstring{$\mathbb{R}$}{R}}
 Recall the definition of continuity at a point in $\mathbb{R}$ equipped with the usual Euclidean metric is:\\
 A function $f:\mathbb{R}\rightarrow\mathbb{R}$ is said to be continuous at some point $x_0\in\mathbb{R}$ if for each $\epsilon>0$, there exists some $\delta(\epsilon)>0$ such that $|f(x)-f(x_0)|<\epsilon$ is true whenever $|x-x_0|<\delta(\epsilon)$ is true.\\
@@ -1460,7 +1483,7 @@ Combining all three together, we get a peculiar set where for all $x$, $x\in V\s
     Therefore, $[c,d]$ is not an open set. As our choice of $c,d$ is arbitrary, every closed interval in $\mathbb{R}$ is not open.
 \end{proof}
 \subsubsection{Properties of Open Sets}
-\noindent Now, we want to investigate the properties of open sets to understand them better. From here on, I will again revert to using metric spaces to discuss things.
+\noindent Now, we want to investigate the properties of open sets to understand them better. From here on, we will again revert to using metric spaces to discuss things.
 \begin{Theorem}{Arbitrary Unions of Open Sets}\label{union_open_sets}
     Arbitrary unions (can be infinite too!) of open sets are an open set. That is if $\{U_i\}_{i\in I}$ is any collection of open subsets of $\mathbb{R}$, then $\bigcup_{i\in I}U_i$ is open.
 \end{Theorem}
@@ -1602,7 +1625,7 @@ So, closed intervals can be expressed as complements of open intervals quite eas
 In the introduction to this chapter, we said that topology wishes to go beyond the metric spaces, i.e., a notion of distance. However, up to now we have defined open sets in terms of open balls (in metric space), open intervals (in $\mathbb{R}$), where some notion of distance is used as evidenced by $\epsilon$ in their definition. How do we go beyond it? Well, we also said that we wanted to bring the basics of set theory in our discussions, too. We have established three very powerful theorems on open sets, namely theorems \eqref{union_open_sets}, \eqref{finite_inter_open_sets}, and \eqref{Empty_whole_space_open}, where just the basic union, intersection of set theory are used. So instead of using the usual definition of open sets in $\mathbb{R}$ and metric space $(M,d)$, we redefine open sets in the form of these theorems. But before we do that, for union and intersection to make sense, we need some collection of sets, the whole space $X$ and the empty set $\varnothing$ being the bare minimum. So let us take $\mathcal{T}$ to be a collection of subsets of the whole space $X$. That is, $$\mathcal{T}=\{\varnothing,U_1,U_2,\dots,X\}$$
 With this we finally proceed to define a topology $\mathcal{T}$ on set $X$ -
 \begin{Definition}{Topology, Open Sets, and Closed Sets}\label{topology_open_sets_closed set}
-    Let the whole space be $X$, and then take $\mathcal{T}$ to be a collection of subsets of $X$. If the following properties are satisfied -
+    Let $X$ be any arbitrary set, and then take $\mathcal{T}$ to be a collection of subsets of $X$. If the following properties are satisfied -
     \begin{enumerate}
         \item $\varnothing$ and $X$ in $\mathcal{T}$. [Theorem \eqref{Empty_whole_space_open}]
         \item Arbitrary unions of any sub-collections of $\mathcal{T}$ is in $\mathcal{T}$. [Theorem \eqref{union_open_sets}]
@@ -1617,7 +1640,13 @@ With this we finally proceed to define a topology $\mathcal{T}$ on set $X$ -
     Standard Topology
 \end{Example}
 \begin{proof}
-    Standard topology is simply the topology that is induced from the Euclidean metric $d_{euc}=|x-y|$ (or the Unitary metric $d_{uni}=\sqrt{|x-y|^2}$) by utilizing open balls in the metric space $(\mathbb{R},d_{euc})$ (or $(\mathbb{C},d_{uni})$). The verification of this as a topology has already been given before.
+    Standard topology is simply the topology that is induced from the Euclidean metric $d_{euc}=|x-y|$ (or the Unitary metric $d_{uni}=\sqrt{|x-y|^2}$) $(\mathbb{R},d_{euc})$ (or $(\mathbb{C},d_{uni})$). It can also be $(\mathbb{R}^n,d_{euc})$ or $(\mathbb{C}^n,d_{uni})$ where $d_{euc}=\sum_{i=0}^{i=n} \sqrt{(x_i-y_i)^2}$ and $d_{uni}=\sum_{i=0}^{i=n}\sqrt{|x_i-y_i|^2}$. The verification of this as a topology has already been given before.
+\end{proof}
+\begin{Example}\label{metric_topology}
+	Metric Topology
+\end{Example}
+\begin{proof}
+	The metric topology is defined as the topology generated by utilizing the concept of open balls in the metric space. This has also been covered as exercises to part 4A.
 \end{proof}
 \begin{Example}\label{discrete_topology}
     From Discrete Metric to Discrete Topology.
@@ -1751,9 +1780,9 @@ With this we finally proceed to define a topology $\mathcal{T}$ on set $X$ -
 \end{Theorem}
 \begin{proof}
     To prove that every metric space induces a topology, just use the concept of open balls as open sets.\\
-    To prove that not all topologies admit of a metric, just state and explain examples \eqref{particular_point_topology} and \eqref{finite_complement_topology}.
+    To prove that not all topologies admit of a metric, one can simply refer to examples \eqref{particular_point_topology} and \eqref{finite_complement_topology}. There are many more topologies that do not admit of a metric, these two are just 2 simple examples.
 \end{proof}
-\noindent With that established, we now need to define continuity in topological spaces. Following theorems \eqref{con_open_sets_in_R} and \eqref{con_metric_open}, we define continuity in topological spaces as below:
+\noindent Curious readers may think, what sort of restriction do we need to impose on topological spaces so that they have a metric? We will slowly but definitely come to answer this question in the future when our knowledge about topological space will be more bolstered. With that established, we now need to define continuity in topological spaces. Following theorems \eqref{con_open_sets_in_R} and \eqref{con_metric_open}, we define continuity in topological spaces as below:
 \begin{Definition}{Continuity in Topological Spaces}\label{con_topological_spaces}
     Let $X, Y$ be topological spaces, then a function $f:X \rightarrow Y$ is continuous if for every open set $U\subseteq Y$, we can always find the preimage to be an open set in $X$, that is $f^{-1}(U)\subseteq X$ is open.
 \end{Definition}
@@ -1813,7 +1842,7 @@ Now, we have to answer two questions: what are the defining characteristics of t
 Following desired characteristics (1), we know that $\boxed{\mathcal{B}\subseteq\mathcal{T}}$. Now, we have a smaller object, and from that smaller object, we have to generate something larger, so we need to combine the smaller objects. So, this gives us an idea about the method of generating members from the basis. Using this idea and desired characteristics (2), we set our generating method to be unions of the members of the basis. But what type of union? To keep things flexible, let us set the union as arbitrary unions (Similar to the definition of topology). This generating process must generate all the members of the topology. So, we have $\boxed{\cup_{i\in I}B_i=\mathcal{T}_j}$ for each $B_i\in\mathcal{B}$ where $\mathcal{T}_j\in\mathcal{T}$ for some index $j\in J$. To get the whole space, we require $\mathcal{T}_j=X$. In fact, we can do a more direct setup for the whole space, we can write $\boxed{\cup_{x\in X}B_x=X}$. In general we can get, $\cup_{j\in J}\mathcal{T}_j=\mathcal{T}\implies\cup_{j\in J}(\cup_{i\in I}B_i)=\mathcal{T}\implies\cup_{k\in K}B_k=\mathcal{T}$. This means that we also get the arbitrary union of the topology property! What about the empty set? According to the convention of set theory, the arbitrary union of the empty family is the empty set, i.e. $\cup_{B\in\varnothing}B=\varnothing$. Now, from the finite intersection property of topology, we must have $\boxed{B_p\subseteq B_m\cap B_n}$ as every $\mathcal{B}\subseteq\mathcal{T}$. Now, we have finished our synthesis for the basis.\\
 Notice that in the four boxed equations, the first two set the domain and the generating process, respectively. The fourth box preserves the finite intersection property. But why the third box? Well, when working with topological spaces, the same topology can be applied to different whole spaces. So, we need something to capture the whole space, and that is why we have boxed the third one. An alternate formulation of the third box is that for every $x\in X$, there exists a $B_x$ such that $x\in B_x$. With this out of the way, let us define the following concepts.
 \begin{Definition}{Basis for the Topology}\label{basis_topology}
-    The basis for the topology, denoted by $\mathcal{B}$, is a sub-collection of sets $\mathcal{B}\subseteq\mathcal{T}$ such that
+    The basis for the topology, denoted by $\mathcal{B}$, is a sub-collection of sets $\mathcal{B}\subseteq\mathcal{T}$ (or if one wishes to circumvent the mention of the topology itself, can quite simply write it as a collection of subsets of $X$) such that :
     \begin{enumerate}
         \item For every $x\in X$, there exists a $B_x$ such that $x\in B_x\subseteq\mathcal{B}$. This implies that $\cup_{x\in X}B_x=X$.
         \item For every $B_i, B_j$ there exists at least one $B_k$ such that $B_k\subseteq(B_i\cap B_j)$.
@@ -1823,10 +1852,27 @@ Notice that in the four boxed equations, the first two set the domain and the ge
 \begin{Definition}{Generated Topology}\label{generated_topology}
     The generated topology is the topology that we get from the union of the arbitrary family of basis for the topology. Denoted by $\mathcal{T}_{gen}$, symbolically, $$\mathcal{T}_{gen}=\{U\subseteq X:U=\cup_{k\in K}B_k,B_k\in\mathcal{B}\}$$
 \end{Definition}
+\noindent Now, we have thematically went from the topology to the basis and generated topology definition. But we need to check if the other way, that is from the basis and generated topology to the topology, checks out as well.
+\begin{Theorem}{Generated Topology forms a Topology!}\label{generated_topology_forms_a_topology}
+	The generated topology indeed forms a topology.
+\end{Theorem}
+\begin{proof}
+	
+\end{proof}
 \begin{Definition}{Basic Open Sets}\label{basic_open_set}
     The members of the basis for the topology, when equipped with the generated topology, are open, and thus they are called basic open sets.
 \end{Definition}
-\noindent Now, let us look at some examples.
+\noindent Now, one question may arise to the mind of the readers, is the generated topology unique or not? The following theorem tells us exactly that -
+\begin{Theorem}{The Uniqueness of Bases and Generated Topologies}\label{uniqueness_of_bases_and_generated_topologies}
+	\begin{enumerate}[leftmargin=0.5cm]
+		\item Given a basis, the generated topology is unique.
+		\item Given a topology, the basis is not unique.
+	\end{enumerate}
+\end{Theorem}
+\begin{proof}
+	
+\end{proof}
+\noindent With that out of the way, let us look at some examples.
 \begin{Example}
     Some examples of bases for different topologies:
     \begin{enumerate}
@@ -2100,9 +2146,17 @@ An alternate definition of the boundary of a set can be formulated as follows -
     \item \textbf{Investigate the following query -}
     \begin{Query}{Idempotence of Boundary of a Set}\label{idempotence_of_boundary}
         Check the validity of the following statement - $$\partial A\supseteq\partial(\partial A)$$
-        Is there any if and only if condition imposed on $A$ or $\partial A$ such that $\partial(\partial A)=\partial A$?\newline
-        [Hint: From the 3rd consequence of the alternate definition of the boundary of a set, recall that $\overline{\partial A}=\partial A$. From here on, I believe you should be able to do the rest.]
+        Is there any if and only if condition imposed on $A$ or $\partial A$ such that $\partial(\partial A)=\partial A$?
     \end{Query}
+    [Hint: From the 3rd consequence of the alternate definition of the boundary of a set, recall that $\overline{\partial A}=\partial A$. From here on, I believe you should be able to do the rest.]
+    \item Prove the following theorem -
+    \begin{Theorem}{Interesting Connection Between the Interior and Closure}\label{interesting_connection_between_the_interior_and_closure}
+    	\begin{enumerate}[leftmargin=0.5cm]
+    		\item \( \mathrm{Int}_X (A) = X \setminus \mathrm{Cl}_X (X \setminus A) \).
+    		\item \( \mathrm{Cl}_X (A) = X \setminus \mathrm{Int}_X (X \setminus A) \).
+    	\end{enumerate}
+    \end{Theorem}
+    [Hint: Look at the proof of the definition \eqref{alternate_definition_boundary} closely.]
 \end{enumerate}
 \section{Neighborhoods, Limit Points, Dense Sets, and Separable Space}
 Now we will develop another way of defining the closure of a set, and this way utilizes the concept of limit points.
@@ -2282,7 +2336,26 @@ From the properties of the derived set, we see that it has a close relation with
 \begin{proof}
     See the investigation before.
 \end{proof}
-\subsection{Supplementary Material: \texorpdfstring{$\mathrm{T}_1$}{T1} Space}
+\exercise
+\begin{enumerate}[label=\textbf{\arabic*.}]
+	\item \textbf{Does the equality in theorem $\pmb{\eqref{derived_set_of_union}}$ hold for infinite unions? If yes, then provide proof, and if no, provide a counterexample.} \newline [Hint: Think about sets with pathological behavior. The answer is quite \textit{discreet}, and yes, the pun is intended.]
+	\item \textbf{Rigorously verify each of the examples $\pmb{\eqref{limit_point_drived_set_example}}$ and $\pmb{\eqref{discrete_set_example}}$}. When dealing with $\mathbb{ N, Z, Q, I, R}$, and the discrete set, assume the topology is the standard topology.
+	\item \textbf{Continuity via Neighborhoods:} Prove the following theorem -
+	\begin{Theorem}{Continuity \& Neighborhoods}\label{continuity_neighborhood}
+		Let $X, Y$ be topological spaces, then a function $f:X \rightarrow Y$ is continuous if and only if for every neighborhood of $f(x)$, $N_{f(x)}\in Y$ there exists some neighborhood of $x$, $N_x\subseteq f^{-1}(N_{f(x)})\subseteq X$.
+	\end{Theorem}
+	\item \textbf{Prove the following things:}
+	\begin{enumerate}
+		\item Limit points and Isolated points are mutually exclusive and exhaustive. \newline
+		[Hint: The deleted neighborhood definition becomes handy in this case!]
+		\item The set of all adherent points (or contact points) of a set is equivalent to its closure. Let the set of adherent points of the set $A$ be denoted by $A_{Ad}$, then show that $A_{Ad}=\overline{A}$.
+	\end{enumerate}
+	\item \textbf{Working in the Opposite Order:} From definition \eqref{closed_set}, we arrived at theorem \eqref{closed_sets_limit_points}. Now, dear reader, you have to go from theorem \eqref{closed_sets_limit_points} to definition \eqref{closed_set}. That is, prove that,
+	$$\boxed{\text{A set is closed if it contains all of its limit points}\implies\text{The complement of a closed set is open}}$$
+\end{enumerate}
+\subsection{Separation Axioms and \texorpdfstring{$\mathrm{T}_1$}{T1} Space}
+\subsubsection{Separation Axioms}
+\subsubsection{\texorpdfstring{$\mathrm{T}_1$}{T1} Space}
 In the proof of the derived sets being closed, only having a topology was not enough. We had to introduce a further restriction on the topology by requiring singleton sets to be closed. Now, one can find a surprising connection between singleton sets being always closed with the neighborhood of such a topology. This is illustrated here.
 \begin{Theorem}{Singleton Sets being Closed and Neighborhoods}\label{singleton_set_closed_disjoint_neighborhood}
     In a topological space $X$, if $x,y\in X$ are distinct points, then all the singleton sets are always closed if and only if there exist neighborhoods $N_x, N_y$ such that $y\notin N_x, x\notin N_y$.
@@ -2306,23 +2379,9 @@ In the proof of the derived sets being closed, only having a topology was not en
     All metric spaces are examples of $\mathrm{T}_1$ space.\newline
     [N.B. But not all $\mathrm{T}_1$ space has a metric. An example of such a space is the cofinite or the finite complement topology. This is a $\mathrm{T}_1$ space but not a metric space.]
 \end{Example}
-\noindent Similar to this, there are more and other types of restrictions one can impose on topologies; these restrictions are called \textbf{`Separation Axioms'}. These are not as fundamental as the axioms of topology itself; rather, these are used to specify what type of topological space one is interested in studying, because a topology by itself is so general that if one wishes to study it then they have to contend themselves with some pathological behavior (discrete topology, trivial topology to name a few) that goes against our `usual' geometrical intuition.
 \exercise
 \begin{enumerate}[label=\textbf{\arabic*.}]
-    \item \textbf{Does the equality in theorem $\pmb{\eqref{derived_set_of_union}}$ hold for infinite unions? If yes, then provide proof, and if no, provide a counterexample.} \newline [Hint: Think about sets with pathological behavior.]
-    \item \textbf{Rigorously verify each of the examples $\pmb{\eqref{limit_point_drived_set_example}}$ and $\pmb{\eqref{discrete_set_example}}$}. When dealing with $\mathbb{ N, Z, Q, I, R}$, and the discrete set, assume the topology is the standard topology.
-    \item \textbf{Continuity via Neighborhoods:} Prove the following theorem -
-    \begin{Theorem}{Continuity \& Neighborhoods}\label{continuity_neighborhood}
-        Let $X, Y$ be topological spaces, then a function $f:X \rightarrow Y$ is continuous if and only if for every neighborhood of $f(x)$, $N_{f(x)}\in Y$ there exists some neighborhood of $x$, $N_x\subseteq f^{-1}(N_{f(x)})\subseteq X$.
-    \end{Theorem}
-    \item \textbf{Prove the following things:}
-    \begin{enumerate}
-        \item Limit points and Isolated points are mutually exclusive and exhaustive. \newline
-        [Hint: The deleted neighborhood definition becomes handy in this case!]
-        \item The set of all adherent points (or contact points) of a set is equivalent to its closure. Let the set of adherent points of the set $A$ be denoted by $A_{Ad}$, then show that $A_{Ad}=\overline{A}$.
-    \end{enumerate}
-    \item \textbf{Working in the Opposite Order:} From definition \eqref{closed_set}, we arrived at theorem \eqref{closed_sets_limit_points}. Now, dear reader, you have to go from theorem \eqref{closed_sets_limit_points} to definition \eqref{closed_set}. That is, prove that,
-    $$\boxed{\text{A set is closed if it contains all of its limit points}\implies\text{The complement of a closed set is open}}$$
+	\item 
 \end{enumerate}
 \subsection{Dense Sets, Perfect Sets \& Separable Spaces}
 From the previous section, we learned that in a set, the limit points are the points which the set itself `reaches out to'. We also found the utility of limit points in an alternate definition of the closure (theorem \eqref{closure_limit_points}). Now, it is natural to look for sets which reaches out to points in itself! Like these sets do not venture outside of themselves.
@@ -2352,7 +2411,7 @@ Now, we again go back to our roots in chapter 1, we know that $\mathbb{Q}$ is co
     A topological space $(X,\mathcal{T})$ is called a separable space if there exists a dense and countable subset $A\subseteq X$.
 \end{Definition}
 \begin{Example}
-    \begin{enumerate}
+    \begin{enumerate}[leftmargin=0.5cm]
         \item If the topological space itself is finite or infinitely countable, then it will be a separable topological space.
         \item The real numbers $\mathbb{R}$ with the usual topology is a separable space as it contains a dense and countable subset, the set of rational numbers $\mathbb{Q}$.
     \end{enumerate}
@@ -2376,6 +2435,10 @@ Now, we again go back to our roots in chapter 1, we know that $\mathbb{Q}$ is co
 \noindent As most of the spaces we are interested in, such as $\mathbb{Q, R, C}$, are $\mathrm{T}_1$ spaces, we can only find countable dense subsets, and that is what makes separable space so important.\\
 Another important thing to note about separable spaces is that, as the dense subset is countable, we can find a way to relate the dense set to the natural numbers, and that means we can construct the dense set explicitly. This is extremely helpful when proving the existence of certain mathematical objects by explicitly constructing an example. The branch of mathematics that deals with this sort of proof of existence by construction of examples is called `constructive mathematics'.\\
 We keep our discussion on separable spaces restricted to here for now; the next section will provide more ammunition to study such spaces further.
+\exercise
+\begin{enumerate}[label=\textbf{\arabic*.}]
+	\item 
+\end{enumerate}
 \section{Connectedness and Compactness}
 In this section, we will discuss two specific types of sets and their impressive impact on continuous functions.
 \subsection{Basic Intuition and Definitions}
@@ -2469,10 +2532,12 @@ Previously, we have familiarized ourselves with the definition of compact spaces
 \subsubsection{Bolzano-Weierstrass Theorem}
 \subsubsection{Heine-Borel Theorem}
 \subsection{Compactness and Continuity}
-\section{Supplementary Material: Baire Spaces}
-\subsection{Some Preliminaries and Definitions}
-\subsection{The 1st Baire Category Theorem}
-\subsection{The 2nd Baire Category Theorem}
+\section{Supplementary Material: Metrizable and Baire Spaces}
+\subsection{Metrizable Space}
+\subsection{Baire Space}
+\subsubsection{Some Preliminaries and Definitions}
+\subsubsection{The 1st Baire Category Theorem}
+\subsubsection{The 2nd Baire Category Theorem}
 \chapter{Differentiation in \texorpdfstring{$\pmb{\mathbb{R}}$}{R}}
 \chapter{Optimization in \texorpdfstring{$\pmb{\mathbb{R}}$}{R} and Indeterminate Forms}
 \chapter{Recap of Algebra \& Topology in \texorpdfstring{$\pmb{\mathbb{R}^n}$}{Rn}}

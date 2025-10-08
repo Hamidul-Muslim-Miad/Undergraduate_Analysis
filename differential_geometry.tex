@@ -1,0 +1,67 @@
+\chapter{Differential Geometry: The Basics}
+\section{Building Blocks of Manifolds}
+\subsection{Locally Euclidean Spaces and Topological Manifolds}
+\subsubsection{The Definitions}
+If we want to do any calculus in any weird or arbitrary space, first we have to convert it to a space in which we already know how to do calculus well. Also as we have learned before, the precondition of doing calculus is ensuring the space is continuous first, so we need the concept of the space of continuous functions, that is, topology. The most general setting in which we have learned differential calculus so far is in the Euclidean spaces, so we need a topological comparison (homeomorphism) from the arbitrary space to the Euclidean spaces. Now, such topological comparisons may not exist always for the whole weird or arbitrary space itself; but we can `zoom in' to all parts of this weird space until it resembles a certain known Euclidean space. An example of this `zoom in' mantra is the Earth, which is roughly a sphere, but zoom in enough on the surface of the Earth, it seems that the land is flat. How can we mathematically capture this notion of `zooming in' in the setting of topology? Well we are truly looking for is a sense of `closeness' to the weird space, and whenever closeness and topology comes up, the concept of a neighborhood becomes very useful. So we formulate `zooming in' via open neighborhoods of the weird space.
+\begin{Definition}{Locally Euclidean Space}\label{locally_euclidean_space}
+	A topological space $(X,\mathcal{T})$ is defined to be a locally Euclidean space of dimension $n$, where $n$ is a non-negative integer, if for every point in $X$ there exists an open neighborhood $U$ such that a homeomorphism $\phi$ from $U$ to an open subset $\phi(U)$ of $\mathbb{R}^n$.
+\end{Definition}
+\noindent This means that the following topological properties will be inherited by the open neighborhood $U$ of the new space $(X,\mathcal{T})$ from $\mathbb{R}^n$:
+\begin{enumerate}
+	\item Locally compact.
+	\item Locally path connected.
+	\item Locally metrizable.
+\end{enumerate}
+Now, let us investigate the homeomorphism $\phi$ very closely, as understanding it better will help us develop our intuition more. With this homeomorphism what we are essentially doing is correlating a local part of the weird space with the geometry of a locally Euclidean space. Now, geometry is often understood best by the means of a coordinate system. So, in that small neighborhood, we are basically bestowing the coordinate system of the Euclidean space. Within this neighborhood, with this coordinate system, we can traverse the unknown space as if it is a common place we have already visited before; so we have essentially found a map (Geographical meaning implied here) of the unknown place. Now, in mathematics, the word `map' is already taken, so the next best name we can use is `chart', which in my personal opinion is a cooler name than `map'.
+\begin{Definition}{Chart, Coordinate Neighborhood, and Coordinate System}\label{chart_coordinate_neighborhood_coordinate_system}
+	In a locally Euclidean space, the homeomorphism $\phi: U\to \phi(U)\subseteq \mathbb{R}^n$ is characterized by the pair $(U,\phi)$ and this pair is defined as the \textbf{chart}.\\
+	The neighborhood $U$ is defined as the \textbf{coordinate neighborhood}.\\
+	The homeomorphism $\phi$ is defined as the \textbf{coordinate system} on $U$.\\
+	The chart $(U,\phi)$ is defined to be centered at $p\in U$ if $\phi(p)=\vec{0}$.
+\end{Definition}
+\noindent If we try to work with these concepts, a few practical problems come up. Such as:
+\begin{enumerate}
+	\item What to do if two coordinate neighborhoods overlap? Which coordinate system do we apply for the common domain of the two coordinate neighborhoods?
+	\item In which process do we `patch up' the coordinate neighborhood and how many numbers of coordinate neighborhoods do we need to get a global behavior of the new arbitrary space?
+\end{enumerate}
+Let us attempt to answer these questions one by one. For the first question, we have two open neighborhoods $U,V$ that overlap, making $U\cap V\neq\varnothing$. Suppose with $U$ there is an associated coordinate system $\phi$, and with $V$ there is an associated coordinate system $\psi$. So, we essentially have the charts $(U,\phi),(V,\psi)$ with $U\cap V\neq\varnothing$. We wish to create a system in which we can easily interchange the coordinate systems of the domain $U\cap V$, and for that we need to find the following two functions $$ a:\phi(U\cap V)\to\psi(U\cap V),\ b:\psi(U\cap V)\to\phi(U\cap V) $$ Notice that both $\phi,\psi$ are homeomorphisms, and by definition of homeomorphism, are bijective functions, and so their inverse functions $\phi^{-1},\psi^{-1}$ exist. It takes little effort to verify that the functions $a,b$ above are defined as $$a:=\psi\circ\phi^{-1},\ b:=\phi\circ\psi^{-1}$$ The functions $a,b$ are essentially functions that `transitions' from one coordinate system to another coordinate system. Therefore, we define the following concept below -
+\begin{Definition}{Transition Functions between Charts}\label{transition_functions}
+	Let $(U,\phi),(V,\psi)$ be two charts, then the transition functions between the charts are defined as the following two functions -
+	\begin{enumerate}
+		\item $\psi\circ\phi^{-1}:\phi(U\cap V)\to\psi(U\cap V)$.
+		\item $\phi\circ\psi^{-1}:\psi(U\cap V)\to\phi(U\cap V)$.
+	\end{enumerate}
+\end{Definition}
+\noindent If we look closely into the transition functions, then we see that we have essentially found a way to go from one arbitrary Euclidean space to another arbitrary Euclidean space. So, we have found our gateway to do calculus in these small overlapping regions. All that is required to specify is what sort of characteristics do we wish to impose on these transition functions in terms of differentiability. With that in mind, we can impose the following restrictions on the transition functions themselves based on the number of times they are continuously differentiable as follows:
+\begin{enumerate}
+	\item $\pmb{C^0}$: If both transition functions are $C^0$, that is just continuous.
+	\item $\pmb{C^{0,\alpha}}$: If both transition functions are $C^{0,\alpha}$ where $\alpha\in(0,1)$, that is $\alpha$-Hölder continuous.
+	\item $\pmb{C^{0,1}}$: If both transition functions are $C^{0,1}$, that is Lipschitz continuous.
+	\item $\pmb{C^r}$: If both transition functions are $C^r$ where $r=1,2,3,\dots$, that is $r\in\mathbb{N}$ times continuously differentiable.
+	\item $\pmb{C^{\infty}}$: If both transition functions are $C^{\infty}$, that is infinitely differentiable.
+	\item $\pmb{C^{\omega}}$: If both transition functions are analytic.
+\end{enumerate}
+\underline{\textbf{Notation Alert:}} Throughout this section whenever we use the variable $k$ in $C^k$, it will refer to these 6 options before. This means that the transition functions are classified into 6 types, and to specify which one we are working with, we define the following concept -
+\begin{Definition}{$C^k$ Compatible Charts}\label{c^k_compatible_charts}
+	Let $(U,\phi)$ and $(V,\psi)$ be two arbitrary charts of a topological manifold $(M,\mathcal{T})$. Then based on the transitions functions $$ \psi\circ\phi^{-1}:\phi(U\cap V)\to\psi(U\cap V),\ \phi\circ\psi^{-1}:\psi(U\cap V)\to\phi(U\cap V)$$ we call them $C^k$ compatible if both transition functions are $C^k$.
+\end{Definition}
+\noindent Just like in topology, we tried to encode and define everything via open sets, in differential geometry, we would like to explain everything via $C^k$ compatible charts. Why not only charts? Because we have a further choice on what sort of charts we are working with, and so we require $C^k$ compatible charts. With that outlook, we also wish to express the whole locally Euclidean space as some collection of $C^k$ compatible charts, so we require a sort of covering property. This gives us the idea of `Atlas'.
+\begin{Definition}{Atlas}\label{atlas}
+	A $C^k$ atlas on a locally Euclidean space $(M,\mathcal{T})$ of dimension $n$ is a collection of pairwise $C^k$ compatible charts that covers $M$, that is $\mathcal{U}=(U_{\alpha},\phi_{\alpha})$ and $M=\cup_{\alpha\in A}U_{\alpha}$.
+\end{Definition}
+\noindent It is easy to check that if the transition functions do not overlap, i.e. if $U\cap V=\varnothing$, then both transition functions reduces to the empty function, i.e. $\psi\circ\phi^{-1}=\phi\circ\psi^{-1}:\varnothing\to\varnothing$. Furthermore, the empty function is analytic ($C^\omega$) vacuously. The hierarchy between all sorts of continuity is given below where $0<\beta<\alpha<1$: $$\boxed{ C^\omega\subset C^\infty\subset\dots\subset C^{r+1}\subset C^r\subset\dots\subset C^2\subset C^1\subset C^{0,1}\subset C^{0,\alpha}\subset C^{0,\beta}\subset C^0}$$ Now let us try to answer the question about global behavior. An important thing to notice is that for the non-overlapping regions, such as $(U\setminus V),(V\setminus U)$, we cannot have transition functions. So, the region $(U\setminus V)$ only has coordinates of $\phi$ and the region $(V\setminus U)$ only has the coordinates of $\psi$. So, it is impossible to `patch up' local open neighborhoods to establish a global property of the new arbitrary space we wish to do calculus on. This means that we need to add further global restrictions or conditions to the definition of a locally Euclidean space. Now there are two types of global restrictions one can impose on an arbitrary topological space, namely -
+\begin{enumerate}
+	\item Separation axioms. Some prominent examples are $\mathrm{T}_1,\mathrm{T}_2,\mathrm{T}_3,\mathrm{R}_0,\mathrm{R}_1,\mathrm{Regular}$.
+	\item Countability axioms. These are first countable, second countable and separable. The second countability condition is the strongest.
+\end{enumerate}
+Now the question is which out of the many global axioms do we pick! This is a question that is still to be answered definitively and many mathematicians are working with different sets of these axioms to figure it out. As this is intended to be a first course in differential geometry, it will be wise to keep things as simple as possible and stick with already well established concepts. In that vein, we pick the \textbf{second countable} condition as it is the most restrictive one in the countability axioms. About the separation axioms, we can sort of work backwards about what we need from what we desire. To do calculus in our locally Euclidean space, it is very useful if the limits are unique. From topology we know that in Hausdorff spaces the limit of a convergent sequence is unique. So, we also include the \textbf{Hausdorff} condition as another of the global restrictions. Again, as a reminder, the choice of the global restrictions are currently undergoing research, and so many mathematicians are working on locally Euclidean spaces with weaker separation and countability axioms; some of them even drop the requirement of countability axioms all together. But for the purposes of a first course, the Hausdorff and second countable space will do just fine. With these two global restrictions, we finally define a topological manifold.
+\begin{Definition}{Topological Manifold}\label{topological_manifold}
+	A topological manifold of dimension $n$ is defined to be a Hausdorff, second countable, locally Euclidean space of dimension $n$.
+\end{Definition}
+\noindent When working with this definition, we should keep the following things in mind -
+\begin{enumerate}
+	\item \textbf{Whenever we are proving any theorem using topological manifolds, we should take note of which global restrictive property we are using in the proof. Doing so will give us a clear idea about which theorems or properties would fail should we weaken the definition of a topological manifold.}
+	\item Although it might be obvious to some, it might still not dawn on the minds of other readers that these global restrictive conditions such as the separation axioms and countability axioms are `hereditary'. Hereditary means that if an arbitrary space has some separation and countability axiom added to it, then its subspace will also inherit the same separation and countability axiom. So, the subspace of any topological manifold (which itself is Hausdorff and second countable), will also be Hausdorff and second countable.
+\end{enumerate}
+\subsubsection{Some Examples and Non-examples}
+\subsection{Smooth Manifolds}

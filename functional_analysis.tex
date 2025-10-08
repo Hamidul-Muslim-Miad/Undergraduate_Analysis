@@ -1,18 +1,30 @@
 \chapter{Inner Products, Norms and Metrics}
+\section{The Basics}
+\subsection{Inner Product}
+\subsection{Norm}
+\subsection{Some Recapitulation on Metric and Topology}
+\section{Continuity of the Operations}
+\subsection{Continuity of Inner Product}
+\subsection{Continuity of Norm}
+\subsection{Continuity of Metric}
+\section{Continuity and Some Interesting Concepts}
+\subsection{Semi-Inner Product}
+\subsection{Semi-Norm}
+\subsection{Pseudometric}
 \chapter{Normed and Topological Vector Spaces}
 \section{Normed Vector Spaces}
 \begin{Definition}{Normed Vector Space}\label{normed_vector_space}
-  A normed vector space is defined as a vector space $V$ over the field $K$ that is equipped with a norm, $\| \cdot \|:V\to\mathbb{R}$, such that the following properties hold:
+  A normed vector space is defined as a vector space $V$ over the field $K$ that is equipped with a norm, $$\| \cdot \|:V\to\mathbb{R}$$ Such that the following properties hold:
   \begin{enumerate}
     \item Non-negativity: For all $x\in V,\ ||x||\geq 0$.
     \item Positive Definiteness: For every $x\in V,\ ||x||=0$ if and only if $x$ is the zero vector.
-    \item Absolute Homogeneity: For $\lambda\in K,\ x\in V,\ ||\lambda x||=|\lambda| ||x||$.
+    \item Absolute Homogeneity: For all $\lambda\in K,\ x\in V,\ ||\lambda x||=|\lambda| ||x||$.
     \item Triangle Inequality: For all $x,y\in V$, $||x+y||\leq||x||+||y||$.
   \end{enumerate}
 \end{Definition}
 \section{Topological Vector Spaces}
 \begin{Definition}{Topological Vector Space}\label{topological_vector_space}
-  A topological vector space $V$ is defined to be a vector space $V$ over a topological field $K$ (Generally $\mathbb{R}$ or $\mathbb{C}$ equipped with the standard topology), and is endowed with a topology such that the following operations are continuous:
+  A topological vector space is defined to be a vector space $V$ over a topological field $K$ (Generally $\mathbb{R}$ or $\mathbb{C}$ equipped with the standard topology), and is endowed with a topology such that the following operations are continuous:
   \begin{enumerate}
     \item Vector Addition, $+: V\cross V\to V$.
     \item Scalar Multiplication, $\cdot: K\cross V\to V$.
