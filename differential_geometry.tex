@@ -12,6 +12,7 @@ If we want to do any calculus in any weird or arbitrary space, first we have to 
 	\item Locally path connected.
 	\item Locally metrizable.
 \end{enumerate}
+\textbf{\underline{An Important Detail:}} Some may think that what if the locally Euclidean space has two homeomorphisms, one at an open subset of $\mathbb{R}^n$ and another at an open subset of $\mathbb{R}^m$, where $n\neq m$! There is a wonderful but difficult theorem from algebraic topology called `Brouwer's Invariance of Dimension' that states that for the locally Euclidean space both homeomorphisms must be of dimension $m=n$. The proof of this theorem is quite non-trivial and requires sophisticated machineries which are beyond the scope of our syllabus. So, for now, we take the theorem to be true by faith and conclude that $n=m$ is true.\\
 Now, let us investigate the homeomorphism $\phi$ very closely, as understanding it better will help us develop our intuition more. With this homeomorphism what we are essentially doing is correlating a local part of the weird space with the geometry of a locally Euclidean space. Now, geometry is often understood best by the means of a coordinate system. So, in that small neighborhood, we are basically bestowing the coordinate system of the Euclidean space. Within this neighborhood, with this coordinate system, we can traverse the unknown space as if it is a common place we have already visited before; so we have essentially found a map (Geographical meaning implied here) of the unknown place. Now, in mathematics, the word `map' is already taken, so the next best name we can use is `chart', which in my personal opinion is a cooler name than `map'.
 \begin{Definition}{Chart, Coordinate Neighborhood, and Coordinate System}\label{chart_coordinate_neighborhood_coordinate_system}
 	In a locally Euclidean space, the homeomorphism $\phi: U\to \phi(U)\subseteq \mathbb{R}^n$ is characterized by the pair $(U,\phi)$ and this pair is defined as the \textbf{chart}.\\
@@ -47,7 +48,7 @@ Let us attempt to answer these questions one by one. For the first question, we 
 \end{Definition}
 \noindent Just like in topology, we tried to encode and define everything via open sets, in differential geometry, we would like to explain everything via $C^k$ compatible charts. Why not only charts? Because we have a further choice on what sort of charts we are working with, and so we require $C^k$ compatible charts. With that outlook, we also wish to express the whole locally Euclidean space as some collection of $C^k$ compatible charts, so we require a sort of covering property. This gives us the idea of `Atlas'.
 \begin{Definition}{Atlas}\label{atlas}
-	A $C^k$ atlas on a locally Euclidean space $(M,\mathcal{T})$ of dimension $n$ is a collection of pairwise $C^k$ compatible charts that covers $M$, that is $\mathcal{U}=(U_{\alpha},\phi_{\alpha})$ and $M=\cup_{\alpha\in A}U_{\alpha}$.
+	A $C^k$ atlas on a locally Euclidean space $(M,\mathcal{T})$ of dimension $n$ is a collection of pairwise $C^k$ compatible charts that covers $M$, that is $\mathcal{U}=\{(U_{\alpha},\phi_{\alpha})\}_{\alpha\in A}$ and $M=\cup_{\alpha\in A}U_{\alpha}$.
 \end{Definition}
 \noindent It is easy to check that if the transition functions do not overlap, i.e. if $U\cap V=\varnothing$, then both transition functions reduces to the empty function, i.e. $\psi\circ\phi^{-1}=\phi\circ\psi^{-1}:\varnothing\to\varnothing$. Furthermore, the empty function is analytic ($C^\omega$) vacuously. The hierarchy between all sorts of continuity is given below where $0<\beta<\alpha<1$: $$\boxed{ C^\omega\subset C^\infty\subset\dots\subset C^{r+1}\subset C^r\subset\dots\subset C^2\subset C^1\subset C^{0,1}\subset C^{0,\alpha}\subset C^{0,\beta}\subset C^0}$$ Now let us try to answer the question about global behavior. An important thing to notice is that for the non-overlapping regions, such as $(U\setminus V),(V\setminus U)$, we cannot have transition functions. So, the region $(U\setminus V)$ only has coordinates of $\phi$ and the region $(V\setminus U)$ only has the coordinates of $\psi$. So, it is impossible to `patch up' local open neighborhoods to establish a global property of the new arbitrary space we wish to do calculus on. This means that we need to add further global restrictions or conditions to the definition of a locally Euclidean space. Now there are two types of global restrictions one can impose on an arbitrary topological space, namely -
 \begin{enumerate}
@@ -64,4 +65,32 @@ Now the question is which out of the many global axioms do we pick! This is a qu
 	\item Although it might be obvious to some, it might still not dawn on the minds of other readers that these global restrictive conditions such as the separation axioms and countability axioms are `hereditary'. Hereditary means that if an arbitrary space has some separation and countability axiom added to it, then its subspace will also inherit the same separation and countability axiom. So, the subspace of any topological manifold (which itself is Hausdorff and second countable), will also be Hausdorff and second countable.
 \end{enumerate}
 \subsubsection{Some Examples and Non-examples}
+In the previous subsection, we noticeably did not provide any examples of the concepts, to fill in this gap, many examples and non-examples are given a separate subsection all-together. Each example is accompanied by its construction and its characteristics with proof, with some of the characteristics not mentioned as we have yet to define and/or understand said characteristics. It is quite practical for the readers to have a repertoire of these examples for these examples come up often in discussion and acts as a handy reference.
+\begin{Example}
+	The Euclidean space.
+\end{Example}
+\begin{Example}
+	The cusp.
+\end{Example}
+\begin{Example}
+	The cross.
+\end{Example}
+\begin{Example}
+	The line with two origins.
+\end{Example}
+\begin{Example}\label{the_long_line}
+	The long line or Alexandroff line.
+\end{Example}
+\begin{Example}
+	$E_8$ Manifold.
+\end{Example}
+\begin{Example}
+	Product of an uncountable set with the indiscrete topology with an Euclidean space of finite dimension.
+\end{Example}
+\noindent \textbf{\underline{Construction:}} \\
+\textbf{\underline{Characteristics:}}
+\subsubsection{Some Properties of Compatible Charts and Atlases}
+\begin{Theorem}{Existence of $C^0$ and $C^{\infty}$ Atlas}\label{existence_of_continuous_and_smooth_atlas}
+	There always exists a $C^0$ atlas in a topological manifold, but a $C^{\infty}$ atlas may not exist in a topological manifold.
+\end{Theorem}
 \subsection{Smooth Manifolds}
