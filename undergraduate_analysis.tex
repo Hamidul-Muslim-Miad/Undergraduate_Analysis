@@ -17,7 +17,6 @@
 \usepackage{fancyhdr}
 \usepackage{physics}
 \usepackage{chngcntr}
-\usepackage{enumitem}
 \usepackage{multicol}
 \usepackage[toc,page]{appendix}
 \usepackage{pifont}
@@ -31,6 +30,17 @@
 \usepackage[strict]{changepage}
 \usepackage{etoolbox}
 \usepackage{enumitem}
+\setlistdepth{6}
+\setlist[enumerate,1]{label=$\arabic*.$}
+\setlist[enumerate,2]{label=$\alph*.$}
+\setlist[enumerate,3]{label=$\Roman*.$}
+\setlist[enumerate,4]{label=$\Alph*.$}
+\setlist[enumerate,5]{label=$\alpha*$}
+\setlist[enumerate,6]{label=$\textbf{\Roman*.}$}
+\setlist[enumerate,7]{label=$\textbf{\arabic*.}$}
+\setlist[enumerate,8]{label=$\textbf{\alph*.}$}
+\setlist[enumerate,9]{label=$\textbf{\roman*.}$}
+\renewlist{enumerate}{enumerate}{9}
 \usepackage[colorlinks=true, linkcolor=Aquamarine!90!black, urlcolor=blue, citecolor=blue]{hyperref}
 \usepackage{cleveref}
 \usepackage{etoolbox}
@@ -214,12 +224,15 @@
 \part*{Part F: Functional Analysis}
 \addcontentsline{toc}{part}{\protect{}Part F: Functional Analysis}
 \input{functional_analysis}
-\backmatter
-\part*{Part F: Miscellaneous Topics}
-\addcontentsline{toc}{part}{\protect{}Part F: Miscellaneous Topics}
+\part*{Part F: Special Functions}
+\addcontentsline{toc}{part}{\protect{}Part F: Special Functions}
+\input{special_functions}
+\part*{Part G: Miscellaneous Topics}
+\addcontentsline{toc}{part}{\protect{}Part G: Miscellaneous Topics}
 \input{open_problems}
 \input{interesting_examples}
 \nocite{*}
+\backmatter
 \bibliographystyle{alpha}
 \bibliography{undergraduate_analysis}
 \end{document}

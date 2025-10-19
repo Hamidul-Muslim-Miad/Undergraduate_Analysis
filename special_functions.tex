@@ -1,0 +1,65 @@
+\chapter{Special Functions: An Introduction}
+There are some functions in mathematics that arise frequently when dealing with mathematical analysis, functional analysis, and as solutions to various equations concerning application in physics, engineering, statistics, economics etc. Such functions are more often than not attributed with special names, and these types of functions are called `special functions'. In this chapter, we will be learning about the fundamental types of these special functions that will serve as a blueprint of sorts and allow us to study even more advanced special functions in the following chapters.
+\section{Exploring a Non-elementary Integral: The Error Function and the Gaussian Integral}
+\subsection{The Context}
+In real life applications, we often encounter the following probability distribution model - $$ P(x)=C_{N}\int_{b}^{a}e^{-x^2}\,\operatorname{d}x$$ Here, $P(x)$ is the probability, and $C_N$ is called the `normalization constant'. In probability, we know that the sum of all probabilities should be equal to $1$. This condition is `normal' (the usual English meaning, not the one in mathematics that is associated with being perpendicular to the tangent) in the sense that it aligns with our usual notion of discrete probability we learned throughout high-school. This fact is written as $ 1=C_N\int_{-\infty}^{\infty}e^{-x^2}\,\operatorname{d}x $. From here, we can get $$ C_n=\frac{1}{\int_{-\infty}^{\infty}e^{-x^2}\,\operatorname{d}x} $$ Hence the name of normalization constant.
+\subsection{Some Basics on Elementary and Non-Elementary Integral}
+\begin{Definition}{Elementary Integral}\label{elementary_integral}
+	Let $F(x)=\int f(x)\,\operatorname{d}x$. We define the integration to be elementary if $F(x)$ can be constructed from polynomials, exponentials, logarithm, hyperbolic functions, trigonometric functions, and its inverses, using finite number of algebraic operations and compositions.
+\end{Definition}
+\subsubsection{The Gaussian Integral}
+When we try to evaluate the normalization constant above, we see that we require to evaluate the integral $$\int_{-\infty}^{\infty}e^{-x^2}\,\operatorname{d}x$$ This integral is the famous `Gaussian Integral'.
+\section{The Gamma and Pi Function: The Functions that Generalize the Factorial}
+\subsection{Finding the Pi and Gamma Function}
+We are all familiar with the factorial function, but just a refresher, the factorial function is $$f(n)=n!=1\cdot2\cdot3\cdot\dots\cdot(n-1)\cdot n$$ where $n\in\mathbb{N}_0$. An important property of the factorial function is that $(n!)=n\cdot(n-1)!$, in which if we substitute $f(n)=n!$ we get the functional equation $f(n)=n\cdot f(n-1)$. Now, we arrive at a slight problem if we leave the functional equation as it is because it becomes $f(0)=0\cdot f(-1)$ for $n=0$. We can sidestep this issue quite easily by taking the functional equation as $f(n+1)=(n+1)\cdot f(n)$ instead of what we took earlier. Now, we wish to extend the domain of the factorial function to more than the non-negative integers only. To what extend it is possible we do not know yet, but whatever the extension may be, it must follow these:
+\begin{enumerate}
+	\item $f(x+1)=(x+1)\cdot f(x)$, where $x\in X$ and $X$ is the extended domain (which we are yet to determine).
+	\item When $x\in\mathbb{N}_0\subseteq X$, it must reduce to the familiar factorial function that we know of.
+\end{enumerate}
+Now comes the tricky part, we have to guess what the solution to this functional equation might look like. For that reason, it is better to take a look at the common functions that we already know a lot about.
+\begin{align*}
+	 e^x&=\sum_{k=0}^{k=\infty}\frac{x^k}{k!}\\
+	 \sin(x)&=\sum_{k=0}^{k=\infty}(-1)^k\frac{x^{2k+1}}{(2k+1)!}\\
+	 \cos(x)&=\sum_{k=0}^{k=\infty}(-1)^k\frac{x^{2k}}{(2k)!}
+\end{align*}
+Now, from Euler's formula ($e^{ix}=\cos(x)+i\sin(x)$), we know that both sine and cosine functions can be encoded via the exponential function, and the exponential function also contains the factorial function in it. So, the solution to the functional equation must be closely related to the exponential function. So, let us investigate this function very carefully.
+\begin{align*}
+	\dv{x}(e^{kx})&=ke^{kx}\\
+	\int e^{kx}\, \operatorname{d}x&=\frac{e^{kx}}{k}+c\quad\text{Here }k\neq0,c\in\mathbb{R}.
+\end{align*}
+As we have our original factorial defined on the non-negative integers, let us evaluate the following definite integral of the exponential function -
+$$\int_{b}^{a}e^{kx}\,\operatorname{d}x=\bigg[ \frac{e^{kx}}{k}\bigg]_{b}^{a}=\frac{1}{k}\bigg[ e^{ka} -e^{kb} \bigg] $$
+Normally we would like to be able to integrate over the whole real line (that is from $-\infty$ to $+\infty$), but if we do that we can clearly see that the integral would diverge. So, the next best option would be to integrate from $0$ to $\infty$ or from $-\infty$ to $0$. We integrate from $0$ to $\infty$ first and after doing it, then we will see what happens when we integrate from $-\infty$ to $0$. So, we have $$ \int_{0}^{\infty}e^{kx}\,\operatorname{d}x=\bigg[ \frac{e^{kx}}{k}\bigg]_{0}^{\infty}=\frac{1}{k}\bigg[ e^{k\cdot\infty} - 1 \bigg] $$
+Here we have two options, for positive value of $k$, the integral diverges, which is of no good to us. But for negative values of $k$, we can get a finite value. So setting $k=-p$ we get - $$ \int_{0}^{\infty}e^{-px}\,\operatorname{d}x= \frac{1}{p}$$ But we are yet to introduce the variable $n$ that corresponds to the factorial function. So for that let us suppose we have the following function that is a solution to the functional equation - $$ \int_{0}^{\infty}g(x,n)e^{-px}\, \operatorname{d}x $$ As it is our proposed solution, we should have $ \int_{0}^{\infty}g(x,0)e^{-px}\, \operatorname{d}x=0!=1 $. Now we can make an interesting observation in the equation $ \int_{0}^{\infty}e^{-px}\,\operatorname{d}x= \frac{1}{p} $, when $p=1$, we have precisely $ \int_{0}^{\infty}e^{-x}\,\operatorname{d}x= 1 = 0! $. Written more elaborately, we can see that $ \int_{0}^{\infty} g(x,0) e^{-x}\, \operatorname{d}x= 0!=1 $. From here, we can say that $g(x,0)=1$. The simplest and classic example of such behavior is seen for $g(x,n)=x^n$. So, we have a candidate for the solution to the function equation - $$ f_{can}(n)=\int_0^{\infty} x^ne^{-x}\, \operatorname{d}x $$
+Now we need to check if it verifies our original two constraints.
+\begin{enumerate}
+	\item The functional equation:
+	\begin{flalign*}
+		f_{can}(n+1)&=\int_0^{\infty} x^{n+1}e^{-x}\,\operatorname{d}x\\
+		&=\bigg[x^{n+1}\int e^{-x}\,\operatorname{d}x\bigg]_0^{\infty}-\int_0^{\infty}\frac{\operatorname{d}}{\operatorname{d}x}\bigg(x^{n+1}\bigg)\bigg(\int e^{-x}\, \operatorname{d}x \bigg)\, \operatorname{d}x\\
+		&=\bigg[-x^{n+1}e^{-x}\bigg]_0^{\infty}+(n+1)\int_{0}^{\infty}x^n e^{-x}\, \operatorname{d}x\\
+		&= 0 + (n+1)\int_{0}^{\infty}x^n e^{-x}\, \operatorname{d}x \\
+		&= (n+1)\int_{0}^{\infty}x^n e^{-x}\, \operatorname{d}x \\
+		&= (n+1)f_{can}(n)
+	\end{flalign*}
+	\item Coinciding with the factorial function for non-negative integer values of $n$:\\
+	For $n=0$, we already have $f_{can}(n)=0!$, and right before, we saw that the function satisfies the functional equation. So, by the method of induction, we can quite easily prove that $f_{can}(n)=n!$ for all non-negative integers $n$.
+\end{enumerate}
+Now, we go back and try to do the same thing for the option we left out before, that is we integrate from $-\infty$ to $0$. Following the same ideas for this would yield another candidate $$ h_{can}(n)=\int_{-\infty}^0 x^n e^x\, \operatorname{d}x $$ Now, if we substitute $x=-m$ we have
+\begin{align*}
+	h_{can}(n)&=\int_{-\infty}^0 x^n e^x\, \operatorname{d}x\\
+	&=(-1)^{n+1}\int_{\infty}^0 m^n e^{-m}\, \operatorname{d}m\\
+	&=(-1)^n\int_0^{\infty} m^n e^{-m}\, \operatorname{d}m\\
+	&=(-1)^n\cdot f_{can}(n)
+\end{align*}
+So, the function $h_{can}(n)$ is just a transformed version of $f_{can}(n)$, and thus, they are essentially the same. The function  $f_{can}(n)$ is defined to be the Euler's factorial function or the Pi function.
+\begin{Definition}{Euler's Factorial Function or Pi Function}\label{eulers_factorial_function_or_pi_function}
+	Euler's factorial function or Pi function, denoted by $\Pi(n)$, is defined as follows - $$ \Pi(n):=\int_0^{\infty}z^ne^{-z}\,\operatorname{d}z$$ When $n\in\mathbb{N}_0$, $\Pi(n)=n!$.
+\end{Definition}
+\noindent Now, another French mathematician named Legendre used the same function but defined it a bit differently than Euler and that function is called the Gamma function, denoted by $\Gamma(n)$, has the property $\Gamma(n+1):=\Pi(n)$. If one wishes to write it in terms of $\Gamma(n)$, then the function is defined as $\Gamma(n)=\int_0^{\infty}z^{n-1}e^{-x}\,\operatorname{d}z$.
+\begin{Definition}{Gamma Function}\label{gamma_function}
+	The gamma function, denoted by $\Gamma(n)$, is defined as follows - $$\Gamma(n):=\int_0^{\infty} z^{n-1}e^{-z}\,\operatorname{d}z$$ When $n\in\mathbb{N}_0,\Gamma(n+1)=n!$.
+\end{Definition}
+\noindent The readers may ask that why is the same function defined in two ways? Well, historically speaking, Euler's Pi function came before Legendre's Gamma function, but Legendre's Gamma function got more popularity for some reason. Furthermore, the rationale behind the usage of $z^{n-1}$ instead of $z^n$ in the definition of the Gamma function by Legendre was also never disclosed, so we genuinely do not know what made Legendre define the Gamma function in the manner he did, just that it stuck with most of the mathematicians. In the context of generalizing the factorial function, the Pi function may seem to be more natural than the Gamma function, but in other contexts, the Gamma function seems to be more natural. So, both functions have their respective merits in terms of usage.
+\subsection{The Domain of the Pi and Gamma Function}
+\section{The Riemann-Zeta Function}
