@@ -312,10 +312,11 @@ Now that we have defined a field, we want to sort out how the members are arrang
 	\end{enumerate}
 	The set $X$ will then be called a strictly preordered set.
 \end{Definition}
-\noindent Below is a diagram summarizing all the important relations we are going to encounter in this text :
+\noindent Below is a diagram summarizing all the important relations we are going to encounter in this text :\vspace{0.5cm}
+\resizebox{17.75cm}{6cm}{%
 \begin{tikzpicture}[
 	node distance=0.5cm and 0.01cm,
-	box/.style={draw, rectangle, rounded corners, minimum width=2cm, minimum height=0.8cm, align=center},
+	box/.style={draw, rectangle, rounded corners, minimum width=1cm, minimum height=0.8cm, align=center},
 	title/.style={font=\large\bfseries}
 	]
 	
@@ -358,6 +359,7 @@ Now that we have defined a field, we want to sort out how the members are arrang
 	\draw[->] (surjective) -- (bijective);
 	
 \end{tikzpicture}
+}
 \subsubsection{Ordering and Elements}
 With all this talk about the ordering, it is natural to ask which elements are the smallest and which are the greatest. This gives us the following -
 \begin{Definition}{Greatest Element of a Set}\label{greatest_element_of_a_set}
@@ -502,7 +504,7 @@ $$n=m+f(2-m^2)\implies n-m=f(2-m^2)=\frac{2-m^2}{m+2}>0\implies n>m$$
 As we can always construct $n$ from any arbitrary choice of $m$ (It is the arbitrary choice that gives generality to the statement we are trying to prove), there will always exist a rational number $\sqrt{2}>n>m$ and $n\in A$. This proves the existence of gaps in the rational numbers utilizing the set $A$. What can be done for the set $B$?
 \end{proof}
 \exercise
-\begin{enumerate}
+\begin{enumerate}[label=\textbf{\arabic*.}]
     \item \textbf{Prove that $\pmb{\sqrt{3}}$ is an Irrational Number.}
     \item \textbf{Prove that $\pmb{\sqrt{6}}$ is an Irrational Number.}
     \item \textbf{If $\pmb{a^2}$ is an odd number, then prove that $\pmb{a}$ is also an odd number. Prove it using the method used in the \pmb{\cref{fnt1}} and then prove it again by using the method of contradiction.}

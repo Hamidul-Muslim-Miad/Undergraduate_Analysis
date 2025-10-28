@@ -60,6 +60,70 @@ So, the function $h_{can}(n)$ is just a transformed version of $f_{can}(n)$, and
 \begin{Definition}{Gamma Function}\label{gamma_function}
 	The gamma function, denoted by $\Gamma(n)$, is defined as follows - $$\Gamma(n):=\int_0^{\infty} z^{n-1}e^{-z}\,\operatorname{d}z$$ When $n\in\mathbb{N}_0,\Gamma(n+1)=n!$.
 \end{Definition}
-\noindent The readers may ask that why is the same function defined in two ways? Well, historically speaking, Euler's Pi function came before Legendre's Gamma function, but Legendre's Gamma function got more popularity for some reason. Furthermore, the rationale behind the usage of $z^{n-1}$ instead of $z^n$ in the definition of the Gamma function by Legendre was also never disclosed, so we genuinely do not know what made Legendre define the Gamma function in the manner he did, just that it stuck with most of the mathematicians. In the context of generalizing the factorial function, the Pi function may seem to be more natural than the Gamma function, but in other contexts, the Gamma function seems to be more natural. So, both functions have their respective merits in terms of usage.
+\noindent The readers may ask that why is the same function defined in two ways? Well, historically speaking, Euler's Pi function came before Legendre's Gamma function, but Legendre's Gamma function got more popularity for some reason. Furthermore, the rationale behind the usage of $z^{n-1}$ instead of $z^n$ in the definition of the Gamma function by Legendre was also never disclosed, so we genuinely do not know what made Legendre define the Gamma function in the manner he did, just that it stuck with most of the mathematicians. In the context of generalizing the factorial function, the Pi function may seem to be more natural than the Gamma function, but in other contexts, the Gamma function seems to be more natural. So, both functions have their respective merits in terms of usage. From both definitions, we can quite clearly observe that $$\boxed{\Gamma(n+1)=\Pi(n)=n!}$$
+Now, we can also get another equivalent definition for the Pi function. For that, let us consider the substitution $z=-\ln(t)$. Then, $\operatorname{d}z=-\frac{1}{t}\operatorname{d}t$ and $e^{-z}=e^{\ln(t)}=e^{\ln(t)}=t$. Furthermore, as $z\to0\implies t\to1,z\to\infty\implies t\to 0$. So after substitution, we have the Pi function as -
+\begin{align*}
+	\Pi(n)&=\int_0^{\infty}z^ne^{-z}\,\operatorname{d}z\\
+	&=\int_1^{0}(-\ln(t))^n (t) (-\frac{1}{t})\,\operatorname{d}t\\
+	&=\int_0^1(-\ln(t))^n\,\operatorname{d}t
+\end{align*}
+So, we can have the Pi and Gamma functions defined as follows - $$\boxed{ \Pi(n)= \int_0^1(-\ln(t))^n\,\operatorname{d}t,\ \Gamma(n+1)=\int_0^1(-\ln(t))^{n}\,\operatorname{d}t }$$
+Now, all the things that we have proved about the Pi and Gamma function is the modern approach. Historically Euler actually discovered something different at first. We will discuss that historical approach by Euler in detail now.\\
+For any $p,q\in\mathbb{N}_0$, we have that
+\begin{align*}
+	&(p+q)!=(p!)(p+1)(p+2)\dots(p+q)\\
+	\implies&\frac{p!}{(p+q)!}=\frac{1}{(p+1)(p+2)\dots(p+q)}\\
+	\implies&\frac{(p!)(p+1)^q}{(p+q)!}=\frac{(p+1)^q}{(p+1)(p+2)\dots(p+q)}\\
+	\implies&\lim_{p\to\infty}\frac{(p!)(p+1)^q}{(p+q)!}=\lim_{p\to\infty}\frac{(p+1)^q}{(p+1)(p+2)\dots(p+q)}\footnotemark\\
+	\implies&\boxed{\lim_{p\to\infty}\frac{(p!)(p+1)^q}{(p+q)!}=1}
+\end{align*}
+\footnotetext{The limit is evaluated as follows: $\lim_{p\to\infty}\frac{(p+1)^q}{(p+1)(p+2)\dots(p+q)}=\lim_{p\to\infty}\frac{p^q(1+\frac{1}{p})^q}{p^q(1+\frac{1}{p})(1+\frac{2}{p})\dots(1+\frac{q}{p})}=\lim_{p\to\infty}\frac{(1+\frac{1}{p})^q}{(1+\frac{1}{p})(1+\frac{2}{p})\dots(1+\frac{q}{p})}=1$}
+The main objective for finding this limit is to find a property that is true for the factorial of large numbers. In order to define an extension of the factorial function, we must have some property of the factorial that is preserved even in the extended definition. Another important thing to notice is that when we discuss something about large numbers, more often than not, we have to use limits. This also helps us to introduce the methods of calculus into our new extended functions. This is the genius of Euler that is still relevant today when doing mathematical research!\\
+Now, with that, let us assume the extended definition of the factorial function also obeys the limit above. Then we have for two numbers $p,q$ (Reminder: we are yet to discover the domain!) -
+\begin{align*}
+	1&=\lim_{p\to\infty}\frac{(p!)(p+1)^q}{(p+q)!}\\
+	\implies(q-1)!&=(q-1)!\lim_{p\to\infty}\frac{(p!)(p+1)^q}{(p+q)!}\\
+	&=\frac{1}{q}\lim_{p\to\infty}\frac{(p!)(q!)(p+1)^q}{(p+q)!}\\
+	&=\frac{1}{q}\lim_{p\to\infty}(p!)\frac{q!}{(p+q)!}(p+1)^q\\
+	&=\frac{1}{q}\lim_{p\to\infty}\bigg(\prod_{i=1}^{i=p}i\bigg)\frac{1}{(q+1)(q+2)\dots(q+p)}\bigg(\frac{2}{1}\cdot\frac{3}{2}\dots\frac{p+1}{p}\bigg)^q\\
+	&=\frac{1}{q}\lim_{p\to\infty}\bigg(\prod_{i=1}^{i=p}i\bigg)\bigg(\prod_{i=1}^{i=p}\frac{1}{q+i}\bigg)\bigg(\frac{2}{1}\cdot\frac{3}{2}\dots\frac{p+1}{p}\bigg)^q\\
+	&=\frac{1}{q}\lim_{p\to\infty}\bigg(\prod_{i=1}^{i=p}i\bigg)\bigg(\prod_{i=1}^{i=p}\frac{1}{q+i}\bigg)\bigg(\prod_{i=1}^{i=p}\frac{i+1}{i}\bigg)^q\\
+	&=\frac{1}{q}\lim_{p\to\infty}\bigg(\prod_{i=1}^{i=p}i\bigg)\bigg(\prod_{i=1}^{i=p}\frac{1}{q+i}\bigg)\bigg(\prod_{i=1}^{i=p}\big(\frac{i+1}{i}\big)^q\bigg)\\
+	&=\frac{1}{q}\lim_{p\to\infty}\prod_{i=1}^{i=p}\bigg(\frac{i}{q+i}\big(\frac{i+1}{i}\big)^q\bigg)\\
+	&=\frac{1}{q}\lim_{p\to\infty}\prod_{i=1}^{i=p}\bigg(\frac{1}{1+\frac{q}{i}}\big(1+\frac{1}{i}\big)^q\bigg)\\
+	&=\frac{1}{q}\prod_{p=1}^{\infty}\bigg[\frac{1}{1+\frac{q}{p}}\big(1+\frac{1}{p}\big)^q\bigg]\quad\text{The index $i$ can be easily replaced by $p$ as $i$ is a dummy (or placeholder) index.}
+\end{align*}
+In the recent calculations, we should take notice of two things in particular:
+$$ (q-1)!=\lim_{p\to\infty}\frac{(p!)(p+1)^q}{q(q+1)(q+2)\dots(q+p)},\ (q-1)!=\frac{1}{q}\prod_{p=1}^{\infty}\frac{1}{1+\frac{q}{p}}\big(1+\frac{1}{p}\big)^q $$
+The first one expresses the extended factorial function as limit, and the second one expresses the extended factorial function as an infinite product. So we want to focus on both of them. Before we make our notations consistent, we have to make just one tiny modification to the limit expression.
+\begin{align*}
+	(q-1)!&=\lim_{p\to\infty}\frac{(p!)(p+1)^q}{q(q+1)(q+2)\dots(q+p)}\\
+	&=\lim_{p\to\infty}\frac{(p!)(p)^q}{q(q+1)(q+2)\dots(q+p)}\bigg(\frac{p+1}{p}\bigg)^q\\
+	&=\lim_{p\to\infty}\frac{(p!)(p)^q}{q(q+1)(q+2)\dots(q+p)}\lim_{p\to\infty}\bigg(\frac{p+1}{p}\bigg)^q\\
+	&=\lim_{p\to\infty}\frac{(p!)(p)^q}{q(q+1)(q+2)\dots(q+p)}
+\end{align*}
+Now, we fix our notations by taking $q=n,p=z$ to have the Euler's limit definition of the extended factorial function as - $$ \boxed{\Gamma(n)=(n-1)!=\lim_{z\to\infty}\frac{(z!)z^n}{n(n+1)(n+2)\dots(n+z)}} $$
+Doing the same notation change gives us Euler's infinite product definition as - $$ \boxed{\Gamma(n)=(n-1)!=\frac{1}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( 1+\frac{1}{z}\bigg)^n\bigg]} $$
+If we want to go from the infinite product definition to the limit definition, we just reverse the same steps we took to go from the limit definition to the infinite product definition. This means that both definitions are equivalent as well. Also notice that in this context, the notation of the Gamma function makes more sense!\\
+But are these definitions equivalent to the integral definition of the Gamma function? Interestingly enough, they are!
+\begin{Definition}{Alternate Definitions of the Pi and Gamma Functions}
+	The followings definitions of the Pi and Gamma Functions are equivalent to our original definitions \eqref{eulers_factorial_function_or_pi_function} and \eqref{gamma_function}:
+	\begin{enumerate}
+		\item Logarithmic Definition: $$\Gamma(n+1)=\Pi(n)= \int_0^1(-\ln(t))^n\,\operatorname{d}t$$
+		\item Euler's Limit Definition: \[ \Gamma(n)=\Pi(n-1)=\lim_{z\to\infty}\frac{(z!)z^n}{n(n+1)\dots(n+z)} \]
+		\item Euler's Infinite Product Definition:\[ \Gamma(n)=\Pi(n-1)=\frac{1}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( 1+\frac{1}{z}\bigg)^n\bigg] \]
+		\item Weierstrass's Definition: \[ \Gamma(n)=\Pi(n-1)=\frac{e^{-\gamma n}}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( e^{\frac{n}{z}}\bigg)\bigg] \] Here $\gamma$ is the Euler-Mascheroni constant.
+	\end{enumerate}
+\end{Definition}
+\begin{proof}
+	$ \pmb{\eqref{eulers_factorial_function_or_pi_function},\eqref{gamma_function}\iff(1)}$\\
+	$(1)$ can be easily shown as an equivalent definition by substituting and back-substituting $z=-\ln(t)$ as done before. This proves $(1)$ is an equivalent definition.\\
+	$ \pmb{\eqref{eulers_factorial_function_or_pi_function},\eqref{gamma_function}\iff(2)}$\\
+	Left as an exercise for the readers.\\
+	$ \pmb{\eqref{eulers_factorial_function_or_pi_function},\eqref{gamma_function}\iff(3)}$\\
+	We know that the 2nd definition is equivalent to our original definitions, and the 2nd definition itself is equivalent to the 3rd definition. So, this concludes that definition (3) is equivalent to our original definitions.\\
+	$ \pmb{\eqref{eulers_factorial_function_or_pi_function},\eqref{gamma_function}\iff(4)}$\\
+	
+\end{proof}
 \subsection{The Domain of the Pi and Gamma Function}
 \section{The Riemann-Zeta Function}
