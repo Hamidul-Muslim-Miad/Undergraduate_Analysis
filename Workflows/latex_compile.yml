@@ -13,7 +13,7 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: undergraduate_analysis.tex # Update this to your root file name
+          root_file: TeX_Files/undergraduate_analysis.tex # Update this to your root file name
 
       - name: Commit and Push PDF
         run: |
