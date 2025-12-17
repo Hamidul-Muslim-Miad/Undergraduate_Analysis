@@ -19,6 +19,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add YOUR_ROOT_FILE.pdf # Update this to match your output PDF name
+          git add undergraduate_analysis.pdf # Update this to match your output PDF name
           git commit -m "Auto-generate PDF [skip ci]" || echo "No changes to commit"
           git push
