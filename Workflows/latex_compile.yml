@@ -1,0 +1,24 @@
+name: Build and Save PDF
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Extra security to ensure write access
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: undergraduate_analysis.tex # Update this to your root file name
+
+      - name: Commit and Push PDF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add YOUR_ROOT_FILE.pdf # Update this to match your output PDF name
+          git commit -m "Auto-generate PDF [skip ci]" || echo "No changes to commit"
+          git push
