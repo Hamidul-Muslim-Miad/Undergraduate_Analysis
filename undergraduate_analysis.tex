@@ -11,6 +11,7 @@
 \usepackage{skull}
 \usepackage{array}
 \usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{sectsty}
 \usepackage{mathrsfs}
@@ -85,6 +86,8 @@
 \newenvironment{Definition}[1]{
     \refstepcounter{definition}
     \begin{tcolorbox}[
+    	enhanced,
+    	breakable,
         colback=red!5!white,
         colframe=red!75!black,
         title={Definition \thedefinition: #1}
@@ -97,6 +100,8 @@
 \newenvironment{Query}[1]{
     \refstepcounter{query}
     \begin{tcolorbox}[
+    	enhanced,
+    	breakable,
         colback=ForestGreen!5!white,
         colframe=ForestGreen!55!black,
         title={Query \thequery: #1}
@@ -111,6 +116,8 @@
     \begin{tcolorbox}[
         width=\linewidth-3cm, % Match lemma_proof's 1.5cm indentation on both sides
         center, % Center the narrower box
+        enhanced,
+        breakable,
         colback=Gray!5!white,
         colframe=Gray!50!black,
         title={Lemma \thelemma: #1}
@@ -125,6 +132,8 @@
 \newenvironment{Theorem}[1]{
     \refstepcounter{theorem}
     \begin{tcolorbox}[
+    	enhanced,
+    	breakable,
         colback=RoyalPurple!5!white,
         colframe=RoyalPurple!100!black,
         title={Theorem \thetheorem: #1}
@@ -139,6 +148,8 @@
 \newenvironment{Example}{
     \refstepcounter{example}
     \begin{tcolorbox}[
+    	enhanced,
+    	breakable,
         colback=YellowOrange!10!white,
         colframe=YellowOrange!80!black,
         title={Illustrative Example \theexample}
@@ -152,6 +163,8 @@
 \newenvironment{Trick}[1]{
     \refstepcounter{trick}
     \begin{tcolorbox}[
+    	enhanced,
+    	breakable,
         colback=Cyan!5!white,
         colframe=Cyan!75!black,
         title={Trick \thetrick: #1}

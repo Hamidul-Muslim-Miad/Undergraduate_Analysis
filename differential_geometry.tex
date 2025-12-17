@@ -27,7 +27,7 @@ Now, let us investigate the homeomorphism $\phi$ very closely, as understanding 
 \end{enumerate}
 Let us attempt to answer these questions one by one. For the first question, we have two open neighborhoods $U,V$ that overlap, making $U\cap V\neq\varnothing$. Suppose with $U$ there is an associated coordinate system $\phi$, and with $V$ there is an associated coordinate system $\psi$. So, we essentially have the charts $(U,\phi),(V,\psi)$ with $U\cap V\neq\varnothing$. We wish to create a system in which we can easily interchange the coordinate systems of the domain $U\cap V$, and for that we need to find the following two functions $$ a:\phi(U\cap V)\to\psi(U\cap V),\ b:\psi(U\cap V)\to\phi(U\cap V) $$ Notice that both $\phi,\psi$ are homeomorphisms, and by definition of homeomorphism, are bijective functions, and so their inverse functions $\phi^{-1},\psi^{-1}$ exist. It takes little effort to verify that the functions $a,b$ above are defined as $$a:=\psi\circ\phi^{-1},\ b:=\phi\circ\psi^{-1}$$ The functions $a,b$ are essentially functions that `transitions' from one coordinate system to another coordinate system. Therefore, we define the following concept below -
 \begin{Definition}{Transition Functions between Charts}\label{transition_functions}
-	Let $(U,\phi),(V,\psi)$ be two charts, then the transition functions between the charts are defined as the following two functions -
+	Let $(U,\phi),(V,\psi)$ be two charts, then the transition functions between the charts are defined as the following two functions
 	\begin{enumerate}
 		\item $\psi\circ\phi^{-1}:\phi(U\cap V)\to\psi(U\cap V)$.
 		\item $\phi\circ\psi^{-1}:\psi(U\cap V)\to\phi(U\cap V)$.
@@ -50,7 +50,13 @@ Let us attempt to answer these questions one by one. For the first question, we 
 \begin{Definition}{Atlas}\label{atlas}
 	A $C^k$ atlas on a locally Euclidean space $(M,\mathcal{T})$ of dimension $n$ is a collection of pairwise $C^k$ compatible charts that covers $M$, that is $\mathcal{U}=\{(U_{\alpha},\phi_{\alpha})\}_{\alpha\in A}$ and $M=\cup_{\alpha\in A}U_{\alpha}$.
 \end{Definition}
-\noindent It is easy to check that if the transition functions do not overlap, i.e. if $U\cap V=\varnothing$, then both transition functions reduces to the empty function, i.e. $\psi\circ\phi^{-1}=\phi\circ\psi^{-1}:\varnothing\to\varnothing$. Furthermore, the empty function is analytic ($C^\omega$) vacuously. The hierarchy between all sorts of continuity is given below where $0<\beta<\alpha<1$: $$\boxed{ C^\omega\subset C^\infty\subset\dots\subset C^{r+1}\subset C^r\subset\dots\subset C^2\subset C^1\subset C^{0,1}\subset C^{0,\alpha}\subset C^{0,\beta}\subset C^0}$$ Now let us try to answer the question about global behavior. An important thing to notice is that for the non-overlapping regions, such as $(U\setminus V),(V\setminus U)$, we cannot have transition functions. So, the region $(U\setminus V)$ only has coordinates of $\phi$ and the region $(V\setminus U)$ only has the coordinates of $\psi$. So, it is impossible to `patch up' local open neighborhoods to establish a global property of the new arbitrary space we wish to do calculus on. This means that we need to add further global restrictions or conditions to the definition of a locally Euclidean space. Now there are two types of global restrictions one can impose on an arbitrary topological space, namely -
+\noindent It is easy to check that if the transition functions do not overlap, i.e. if $U\cap V=\varnothing$, then both transition functions reduces to the empty function, i.e. $\psi\circ\phi^{-1}=\phi\circ\psi^{-1}:\varnothing\to\varnothing$. Furthermore, the empty function is analytic ($C^\omega$) vacuously. The hierarchy between all sorts of continuity is given below where $0<\beta<\alpha<1$:
+$$\boxed{ C^\omega\subset C^\infty\subset\dots\subset C^{r+1}\subset C^r\subset\dots\subset C^2\subset C^1\subset C^{0,1}\subset C^{0,\alpha}\subset C^{0,\beta}\subset C^0}$$
+When doing calculations, it is quite natural to want as large an atlas as possible so that we can do calculus in as many coordinates as possible. This brings us to define an atlas that must be larger under comparison with other atlases. There comes two methods of comparison, by membership and by cardinality. As membership is comparatively easier to grasp, we proceed using comparison of atlases through membership. Membership means that we require $\subseteq$, which is a reflexive and transitive. So a preorder relation, and the idea of the largest element under preorder relation is given by the maximal element. So, we need to define a maximal atlas.
+\begin{Definition}{Maximal Atlas}\label{maximal_atlas}
+	A $C^k$ atlas, $\mathcal{U}$ is defined as a maximal atlas if for every other $C^k$ atlas $\mathcal{P}$, whenever we have $\mathcal{U}\subseteq\mathcal{P}$, we must also have $\mathcal{P}\subseteq\mathcal{U}\implies\mathcal{U}=\mathcal{P}$.
+\end{Definition}
+\noindent Now let us try to answer the question about global behavior. An important thing to notice is that for the non-overlapping regions, such as $(U\setminus V),(V\setminus U)$, we cannot have transition functions. So, the region $(U\setminus V)$ only has coordinates of $\phi$ and the region $(V\setminus U)$ only has the coordinates of $\psi$. So, it is impossible to `patch up' local open neighborhoods to establish a global property of the new arbitrary space we wish to do calculus on. This means that we need to add further global restrictions or conditions to the definition of a locally Euclidean space. Now there are two types of global restrictions one can impose on an arbitrary topological space, namely -
 \begin{enumerate}
 	\item Separation axioms. Some prominent examples are $\mathrm{T}_1,\mathrm{T}_2,\mathrm{T}_3,\mathrm{R}_0,\mathrm{R}_1,\mathrm{Regular}$.
 	\item Countability axioms. These are first countable, second countable and separable. The second countability condition is the strongest.
@@ -63,9 +69,21 @@ Now the question is which out of the many global axioms do we pick! This is a qu
 \begin{enumerate}
 	\item \textbf{Whenever we are proving any theorem using topological manifolds, we should take note of which global restrictive property we are using in the proof. Doing so will give us a clear idea about which theorems or properties would fail should we weaken the definition of a topological manifold.}
 	\item Although it might be obvious to some, it might still not dawn on the minds of other readers that these global restrictive conditions such as the separation axioms and countability axioms are `hereditary'. Hereditary means that if an arbitrary space has some separation and countability axiom added to it, then its subspace will also inherit the same separation and countability axiom. So, the subspace of any topological manifold (which itself is Hausdorff and second countable), will also be Hausdorff and second countable.
+	\item It is very easy to check that all topological manifolds have transition functions that are minimum $C^0$. So, topological manifolds can also be labeled as $C^0$ manifold.
 \end{enumerate}
+Now, to incorporate the differentiability structure into the definition of manifolds, we need to include $C^k$ atlas. For versatility of calculations, we require maximal atlas. So, we build our definition as follows.
+\begin{Definition}{$C^k$ Manifold}\label{c^k_manifold}
+	A $C^k$ manifold is defined as an ordered tuple $(M,\mathcal{T},\mathcal{M})$, where $M$ is the whole space, $\mathcal{T}$ is the topology, and $\mathcal{M}$ is the maximal $C^k$ atlas.\\
+	When there is no scope of confusion for the topology, a $C^k$ manifold is denoted by an ordered pair $(M,\mathcal{M})$.\\
+	The maximal $C^k$ atlas is also called the differentiable structure on $(M,\mathcal{T})$.
+\end{Definition}
+\noindent As we are working with differentiability, it is an appropriate time to introduce the following isomorphism (or equivalency) concept.
+\begin{Definition}{$C^k$ Diffeomorphism}\label{c^k_diffeomorphism}
+	Let $(M_1,\mathcal{M}_1)$ be a $C^{k_1}$ manifold, $(M_2,\mathcal{M}_2)$ be $C^{k_2}$ manifold and $k=\min(k_1,k_2)$. A diffeomorphism is a bijective $C^k$ function, $F$, from $M_1$ to $M_2$, that is $F:M_1\to M_2$, whose inverse, that is $F^{-1}:M_2\to M_1$ is also a $C^k$ function.
+\end{Definition}
+\noindent Here, we used $k=\min(k_1,k_2)$ as such $C^k$ functions will always exist in the two manifolds with differing differentiability structure. So, our comparison function will always be valid for both manifolds.
 \subsubsection{Some Examples and Non-examples}
-In the previous subsection, we noticeably did not provide any examples of the concepts, to fill in this gap, many examples and non-examples are given a separate subsection all-together. Each example is accompanied by its construction and its characteristics with proof, with some of the characteristics not mentioned as we have yet to define and/or understand said characteristics. It is quite practical for the readers to have a repertoire of these examples for these examples come up often in discussion and acts as a handy reference.
+In the previous subsection, we noticeably did not provide any examples of the concepts, to fill in this gap, many examples and non-examples are given a separate subsection all-together. Each example is accompanied by its construction and its characteristics with proof (some of the constructions and proofs are omitted as they require substantial amount of sophisticated mathematics), with some of the characteristics not mentioned as we have yet to define and/or understand said characteristics. It is quite practical for the readers to have a repertoire of these examples for these examples come up often in discussion and acts as a handy reference.
 \begin{Example}
 	The Euclidean space.
 \end{Example}
@@ -75,22 +93,34 @@ In the previous subsection, we noticeably did not provide any examples of the co
 \begin{Example}
 	The cross.
 \end{Example}
+\noindent\textbf{Characteristics:} It is Hausdorff, second countable, but NOT LOCALLY EUCLIDEAN. So, it is not a topological manifold.
 \begin{Example}
 	The line with two origins.
 \end{Example}
+\noindent\textbf{Characteristics:} It is locally Euclidean, second countable, but NOT HAUSDORFF. So, it is not a topological manifold, rather it is a \textbf{non-Hausdorff topological manifold}.
 \begin{Example}\label{the_long_line}
 	The long line or Alexandroff line.
 \end{Example}
+\noindent\textbf{Characteristics:} It is locally Euclidean, Hausdorff, but NOT SECOND COUNTABLE. So, it is not a topological manifold, rather it is a \textbf{non-second countable topological manifold}.
 \begin{Example}
 	$E_8$ Manifold.
 \end{Example}
+\noindent\textbf{Construction:} Requires extremely specialized knowledge of algebraic topology and differential geometry, which is beyond the scope of introductory differential geometry, hence not provided in this text.\\
+\textbf{Characteristics:} It is a topological manifold, but NOT A SMOOTH TOPOLOGICAL MANIFOLD.\\
+\begin{proof}
+	For the same reasons mentioned in the construction section, the proof is not provided here.
+\end{proof}
 \begin{Example}
 	Product of an uncountable set with the indiscrete topology with an Euclidean space of finite dimension.
 \end{Example}
 \noindent \textbf{\underline{Construction:}} \\
-\textbf{\underline{Characteristics:}}
+\textbf{\underline{Characteristics:}} It is NOT A TOPOLOGICAL MANIFOLD as it does not satisfy locally Euclidean, Hausdorff and second countable properties.
 \subsubsection{Some Properties of Compatible Charts and Atlases}
 \begin{Theorem}{Existence of $C^0$ and $C^{\infty}$ Atlas}\label{existence_of_continuous_and_smooth_atlas}
 	There always exists a $C^0$ atlas in a topological manifold, but a $C^{\infty}$ atlas may not exist in a topological manifold.
 \end{Theorem}
+\begin{proof}
+	By definition of a topological manifold, it is also locally Euclidean. And by definition of locally Euclidean, every point of it can be equipped with a chart. By taking union of the charts of all the points, we can construct a $C^0$ atlas. This completes our first part of the proof.\\
+	For the second part of the proof, we only present a counterexample, namely the $E_8$ manifold. Proving this, as mentioned before in the examples and non-examples section, requires extremely advanced tools. So, for now we take it by faith.
+\end{proof}
 \subsection{Smooth Manifolds}
