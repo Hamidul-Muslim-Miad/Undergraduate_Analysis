@@ -3,15 +3,17 @@ name: Build and Sync PDF
 on:
   push:
     branches:
-      - main  # Adjust this if your branch name is different (e.g., 'master')
+      - main
     paths:
-      - '**.tex'  # Only trigger if a .tex file is modified
+      - '**.tex'
+      - '**.cls'
+      - '**.sty'
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Necessary to push the PDF back to the repo
+      contents: write
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
@@ -19,13 +21,23 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
+          # Root file must match your exact case-sensitive path
           root_file: TeX_Files/undergraduate_analysis.tex
-          # The action automatically handles dependencies and bibliography
+          
+          # 'texlive_version: 2024' (or 'latest') ensures you have current packages
+          texlive_version: latest
+          
+          # 'full' ensures you don't fail due to a missing obscure package
+          args: "-pdf -interaction=nonstopmode -halt-on-error -shell-escape"
 
       - name: Commit and Push PDF
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Ensure the PDF is moved to the root if compiled in a subfolder
+          if [ -f "TeX_Files/undergraduate_analysis.pdf" ]; then
+            mv TeX_Files/undergraduate_analysis.pdf .
+          fi
           git add undergraduate_analysis.pdf
-          git commit -m "Automated build: Update undergraduate_analysis.pdf" || echo "No changes to commit"
+          git commit -m "Automated build: Update undergraduate_analysis.pdf [skip ci]" || echo "No changes to commit"
           git push
