@@ -112,7 +112,7 @@ But are these definitions equivalent to the integral definition of the Gamma fun
 		\item Logarithmic Definition: $$\Gamma(n+1)=\Pi(n)= \int_0^1(-\ln(t))^n\,\operatorname{d}t$$
 		\item Euler's Limit Definition: \[ \Gamma(n)=\Pi(n-1)=\lim_{z\to\infty}\frac{(z!)z^n}{n(n+1)\dots(n+z)} \]
 		\item Euler's Infinite Product Definition:\[ \Gamma(n)=\Pi(n-1)=\frac{1}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( 1+\frac{1}{z}\bigg)^n\bigg] \]
-		\item Weierstrass's Definition: \[ \Gamma(n)=\Pi(n-1)=\frac{e^{-\gamma n}}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( e^{\frac{n}{z}}\bigg)\bigg] \] Here $\gamma$ is the Euler-Mascheroni constant.
+		\item Weierstrass's Definition: \[ \Gamma(n)=\Pi(n-1)=\frac{e^{-\gamma n}}{n}\prod_{z=1}^{\infty}\bigg[ \frac{1}{\big(1+\frac{n}{z}\big)}\bigg( e^{\frac{n}{z}}\bigg)\bigg] \] Here $\gamma=\lim_{n\to\infty}\bigg(\sum_{k=1}^n\frac{1}{k}-\ln n\bigg)$ is the Euler-Mascheroni constant.
 	\end{enumerate}
 \end{Definition}
 \begin{proof}
@@ -127,3 +127,4 @@ But are these definitions equivalent to the integral definition of the Gamma fun
 \end{proof}
 \subsection{The Domain of the Pi and Gamma Function}
 \section{The Riemann-Zeta Function}
+
