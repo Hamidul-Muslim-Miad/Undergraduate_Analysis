@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - '**.tex'
+      - '**.cls'
+      - '**.sty'
 
 jobs:
   build_latex:
@@ -19,23 +21,35 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          # Since we are 'inside' TeX_Files, the root is just the filename
+          # Root file relative to the working_directory
           root_file: undergraduate_analysis.tex
-          compiler: lualatex
+          
+          # Use the specialized latexmk toggle for LuaLaTeX
+          # This ensures multiple passes for the Table of Contents
+          latexmk_use_lualatex: true
+          latexmk_shell_escape: true
+          
+          # Execution context
           working_directory: TeX_Files
           texlive_version: latest
-          args: "-pdf -lualatex -interaction=nonstopmode -halt-on-error -shell-escape"
 
       - name: Commit and Push PDF
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Check the subfolder for the PDF and move it to the root
+          # Verify existence and move PDF from subfolder to repository root
           if [ -f "TeX_Files/undergraduate_analysis.pdf" ]; then
             mv TeX_Files/undergraduate_analysis.pdf ./undergraduate_analysis.pdf
+          else
+            echo "Error: PDF not found in TeX_Files/"
+            exit 1
           fi
           
+          # Stage the updated PDF
           git add undergraduate_analysis.pdf
+          
+          # Commit using [skip ci] to prevent recursive workflow triggers
           git commit -m "Automated build: Update undergraduate_analysis.pdf [skip ci]" || echo "No changes to commit"
+          
           git push
