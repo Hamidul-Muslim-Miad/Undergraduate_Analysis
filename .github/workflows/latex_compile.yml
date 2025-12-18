@@ -19,7 +19,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: tex_files/undergraduate_analysis.tex
+          root_file: TeX_Files/undergraduate_analysis.tex
           # The action automatically handles dependencies and bibliography
 
       - name: Commit and Push PDF
