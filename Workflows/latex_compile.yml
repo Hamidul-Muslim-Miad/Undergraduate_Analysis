@@ -1,24 +1,31 @@
-name: Build and Save PDF
-on: [push]
+name: Build and Sync PDF
+
+on:
+  push:
+    branches:
+      - main  # Adjust this if your branch name is different (e.g., 'master')
+    paths:
+      - '**.tex'  # Only trigger if a .tex file is modified
 
 jobs:
-  build:
+  build_latex:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Extra security to ensure write access
+      contents: write  # Necessary to push the PDF back to the repo
     steps:
-      - name: Checkout repository
+      - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX
+      - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: TeX_Files/undergraduate_analysis.tex # Update this to your root file name
+          root_file: tex_files/undergraduate_analysis.tex
+          # The action automatically handles dependencies and bibliography
 
       - name: Commit and Push PDF
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add undergraduate_analysis.pdf # Update this to match your output PDF name
-          git commit -m "Auto-generate PDF [skip ci]" || echo "No changes to commit"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add undergraduate_analysis.pdf
+          git commit -m "Automated build: Update undergraduate_analysis.pdf" || echo "No changes to commit"
           git push
