@@ -1,5 +1,5 @@
 # Undergraduate Analysis
-![Build Status](https://github.com/Hamidul-Muslim-Miad/Undergraduate_Analysis/actions/workflows/compile.yml/badge.svg)
+![Build Status](https://github.com/Hamidul-Muslim-Miad/Undergraduate_Analysis/workflows/Build%20and%20Sync%20PDF/badge.svg)
 ![License](https://img.shields.io/github/license/Hamidul-Muslim-Miad/Undergraduate_Analysis)
 ![LaTeX](https://img.shields.io/badge/LaTeX-LuaLaTeX-blue.svg)
 
